@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.7.1" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.7.1" />
+    <PackageReference Include="MediatR" Version="12.1.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.Core\EmailMarketing.Architecture.Core.csproj" />
+    <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.Helpers\EmailMarketing.Architecture.Helpers.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Campanha\Commands\Create\" />
+    <Folder Include="Campanha\Commands\Delete\" />
+    <Folder Include="Campanha\Commands\Update\" />
+    <Folder Include="Campanha\Queries\ById\" />
+    <Folder Include="Campanha\Queries\ListAll\" />
+    <Folder Include="Contato\Commands\Create\" />
+    <Folder Include="Contato\Commands\Delete\" />
+    <Folder Include="Contato\Commands\Update\" />
+    <Folder Include="Contato\Queries\ById\" />
+    <Folder Include="Contato\Queries\ListAll\" />
+    <Folder Include="Modelo\Commands\Create\" />
+    <Folder Include="Modelo\Commands\Delete\" />
+    <Folder Include="Modelo\Commands\Update\" />
+    <Folder Include="Modelo\Queries\ById\" />
+    <Folder Include="Modelo\Queries\ListAll\" />
+    <Folder Include="Usuario\Commands\" />
+    <Folder Include="Usuario\Queries\" />
+  </ItemGroup>
+
+</Project>
