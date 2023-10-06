@@ -19,5 +19,10 @@ namespace EmailMarketing.Architecture.Core.Exceptions
         }
 
         public IDictionary<string, string[]> Errors { get; }
+        public static void ThrowException(string propertyName, string message)
+        {
+            var failures = new List<ValidationFailure> { new ValidationFailure(propertyName, message) };
+            throw new ValidationException(failures);
+        }
     }
 }

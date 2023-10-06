@@ -1,4 +1,5 @@
 ﻿using EmailMarketing.Architecture.Core.Messages;
+using EmailMarketing.Architecture.WebApi.Core.Usuario;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;

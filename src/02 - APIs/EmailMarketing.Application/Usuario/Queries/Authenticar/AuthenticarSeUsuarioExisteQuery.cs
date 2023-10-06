@@ -1,4 +1,5 @@
 ﻿using EmailMarketing.Application.DTOs;
+using EmailMarketing.Architecture.Core.Exceptions;
 using EmailMarketing.Architecture.Helpers;
 using EmailMarketing.Domain.Interfaces;
 using MediatR;

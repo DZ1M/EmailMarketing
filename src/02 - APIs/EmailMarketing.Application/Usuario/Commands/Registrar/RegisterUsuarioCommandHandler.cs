@@ -1,4 +1,5 @@
-﻿using EmailMarketing.Architecture.Helpers;
+﻿using EmailMarketing.Architecture.Core.Exceptions;
+using EmailMarketing.Architecture.Helpers;
 using EmailMarketing.Domain.Entities;
 using EmailMarketing.Domain.Interfaces;
 using MediatR;
