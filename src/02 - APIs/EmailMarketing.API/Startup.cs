@@ -1,5 +1,6 @@
 ﻿using EmailMarketing.API.Configuration;
 using EmailMarketing.Application;
+using EmailMarketing.Architecture.WebApi.Core.Auth;
 using EmailMarketing.Infra;
 using FluentValidation.AspNetCore;
 using Serilog;
@@ -32,7 +33,7 @@ namespace EmailMarketing.API
         {
             services.AddApiConfiguration(Configuration);
 
-            //services.AddJwtConfiguration(Configuration);
+            services.AddJwtConfiguration(Configuration);
 
             services.RegisterServices();
 

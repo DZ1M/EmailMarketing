@@ -6,9 +6,9 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
+
 	<ItemGroup>
 		<PackageReference Include="MicroElements.Swashbuckle.FluentValidation" Version="5.7.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.3.1" />
 		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.9" />
 		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="7.0.9" />
@@ -18,7 +18,7 @@
 		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.32.0" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 	  <ProjectReference Include="..\EmailMarketing.Architecture.Core\EmailMarketing.Architecture.Core.csproj" />
 	</ItemGroup>

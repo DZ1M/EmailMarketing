@@ -6,9 +6,18 @@ namespace EmailMarketing.Infra
     public class UnitOfWork : IUnitOfWork
     {
         private readonly EmailMarketingContext _context;
-        public UnitOfWork(EmailMarketingContext context)
+        public IEmpresaRepository Empresa { get; }
+        public IPermissoesRepository Permissoes { get; }
+        public IUsuarioRepository Usuario { get; }
+        public UnitOfWork(EmailMarketingContext context,
+            IEmpresaRepository empresa,
+            IPermissoesRepository permissoes,
+            IUsuarioRepository usuario)
         {
             _context = context;
+            Empresa = empresa;
+            Permissoes = permissoes;
+            Usuario = usuario;
         }
 
         public async Task<bool> CommitAsync()

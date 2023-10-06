@@ -1,12 +1,12 @@
 ﻿namespace EmailMarketing.Domain.Interfaces
 {
-    public interface IRepositoryBase<T>
+    public interface IRepositoryBase<TEntity>
     {
-        void Create(T entity);
-        void Update(T entity);
-        void Delete(T entity);
-        Task<T> ById(Guid id);
-        Task<IEnumerable<T>> List();
-        IQueryable<T> Query();
+        void Create(TEntity entity);
+        void Update(TEntity entity);
+        void Delete(TEntity entity);
+        Task<TEntity> ById(Guid id);
+        Task<IEnumerable<TEntity>> List();
+        IQueryable<TEntity> Query();
     }
 }

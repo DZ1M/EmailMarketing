@@ -3,11 +3,11 @@
     public abstract class Entity
     {
         public Guid Id { get; set; }
-        public Guid IdEnterprise { get; set; }
-        public DateTime CreateAt { get; set; }
-        public DateTime? UpdateAt { get; set; }
-        public Guid CreateBy { get; set; }
-        public Guid? UpdateBy { get; set; }
+        public Guid IdEmpresa { get; set; }
+        public DateTime CriadoEm { get; set; }
+        public DateTime? AtualizadoEm { get; set; }
+        public Guid CriadoPor { get; set; }
+        public Guid? AtualizadoPor { get; set; }
 
         protected Entity()
         {

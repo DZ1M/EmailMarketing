@@ -1,10 +1,11 @@
 ﻿using EmailMarketing.Domain.Interfaces;
 using EmailMarketing.Infra.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Data.Common;
 
 namespace EmailMarketing.Infra.Repositorys
 {
-    public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
+    public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
         protected readonly EmailMarketingContext _context;
 
@@ -13,33 +14,22 @@ namespace EmailMarketing.Infra.Repositorys
             _context = context;
         }
 
-        public async Task<T> ById(Guid id)
-        {
-            return await _context.Set<T>().FindAsync(id);
-        }
+        public async Task<TEntity> ById(Guid id)
+            => await _context.Set<TEntity>().FindAsync(id);        
 
-        public async Task<IEnumerable<T>> List()
-        {
-            return await _context.Set<T>().ToListAsync();
-        }
+        public async Task<IEnumerable<TEntity>> List()
+            => await _context.Set<TEntity>().ToListAsync();        
 
-        public async void Create(T entity)
-        {
-            await _context.Set<T>().AddAsync(entity);
-        }
+        public async void Create(TEntity entity)
+            => await _context.Set<TEntity>().AddAsync(entity);        
 
-        public void Delete(T entity)
-        {
-            _context.Set<T>().Remove(entity);
-        }
+        public void Delete(TEntity entity)        
+            => _context.Set<TEntity>().Remove(entity);        
 
-        public void Update(T entity)
-        {
-            _context.Set<T>().Update(entity);
-        }
-        public IQueryable<T> Query()
-        {
-            return _context.Set<T>().AsQueryable();
-        }
+        public void Update(TEntity entity)
+            => _context.Set<TEntity>().Update(entity);
+        
+        public IQueryable<TEntity> Query()
+            => _context.Set<TEntity>().AsQueryable();        
     }
 }

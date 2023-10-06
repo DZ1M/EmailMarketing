@@ -1,4 +1,5 @@
-﻿using EmailMarketing.Architecture.WebApi.Core.Configuration;
+﻿using EmailMarketing.Architecture.WebApi.Core.Auth;
+using EmailMarketing.Architecture.WebApi.Core.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using System.IO.Compression;
@@ -44,7 +45,7 @@ namespace EmailMarketing.API.Configuration
 
             app.UseCors("Total");
 
-            //app.UseAuthConfiguration();
+            app.UseAuthConfiguration();
 
             app.UseResponseCompression();
 

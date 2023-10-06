@@ -1,5 +1,6 @@
 ﻿using EmailMarketing.Domain.Interfaces;
 using EmailMarketing.Infra.Context;
+using EmailMarketing.Infra.Repositorys;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,9 @@ namespace EmailMarketing.Infra
     {
         public static IServiceCollection InjectInfra(this IServiceCollection services, IConfiguration configuration, string connectionString = "EmailMarketingDb")
         {
+            services.AddScoped<IEmpresaRepository, EmpresaRepository>();
+            services.AddScoped<IPermissoesRepository, PermissoesRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddDbContext<EmailMarketingContext>(options =>
             {

@@ -8,12 +8,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+	  <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.Core\EmailMarketing.Architecture.Core.csproj" />
     <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.Helpers\EmailMarketing.Architecture.Helpers.csproj" />
     <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.WebApi.Core\EmailMarketing.Architecture.WebApi.Core.csproj" />
+    <ProjectReference Include="..\EmailMarketing.Domain\EmailMarketing.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,8 +34,6 @@
     <Folder Include="Modelo\Commands\Update\" />
     <Folder Include="Modelo\Queries\ById\" />
     <Folder Include="Modelo\Queries\ListAll\" />
-    <Folder Include="Usuario\Commands\" />
-    <Folder Include="Usuario\Queries\" />
   </ItemGroup>
 
 </Project>
