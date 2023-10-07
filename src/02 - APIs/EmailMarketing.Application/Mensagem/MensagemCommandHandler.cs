@@ -16,19 +16,12 @@ namespace EmailMarketing.Application.Mensagem
         public async Task<Unit> Handle(MensagemCommand request, CancellationToken cancellationToken)
         {
             // Send QUEUE
-            var command = new MensagemIntegrationEvent(Guid.NewGuid(), "Teste", "teste@teste.com", "teste 123");
-            await _bus.PublishAsync(command);
-
-            // Recevied Queue
-            await _bus.SubscribeAsync<MensagemIntegrationEvent>("Mensagem", EnviarMensagem);
-
-
+            for (var i = 0; i < 10; i++)
+            {
+                var command = new MensagemIntegrationEvent(Guid.NewGuid(), "Teste", "teste@teste.com", "teste 123");
+                await _bus.PublishAsync(command);
+            }
             return Unit.Value;
-        }
-        private async Task EnviarMensagem(MensagemIntegrationEvent message)
-        {
-            Console.WriteLine(JsonHelper.Serialize(message));
-            await Task.CompletedTask;
         }
     }
 }
