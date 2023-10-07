@@ -2,7 +2,6 @@
 using EmailMarketing.Application;
 using EmailMarketing.Architecture.WebApi.Core.Auth;
 using EmailMarketing.Infra;
-using FluentValidation.AspNetCore;
 using Serilog;
 
 namespace EmailMarketing.API
@@ -43,9 +42,7 @@ namespace EmailMarketing.API
 
             services.AddSwaggerConfiguration();
 
-            services.AddControllersWithViews();
-
-            services.AddFluentValidationAutoValidation();
+            services.AppConfigureExceptionFilter();
         }
         public void Configure(WebApplication app, IWebHostEnvironment environment)
         {

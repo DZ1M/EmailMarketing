@@ -18,7 +18,7 @@ namespace EmailMarketing.API.Controllers.Public
         }
 
         [HttpPost("nova-conta")]
-        public async Task<ActionResult> Registrar(RegistrarUsuarioCommand usuarioRegistro)
+        public async Task<ActionResult> Registrar([FromBody]RegistrarUsuarioCommand usuarioRegistro)
         {
             await _mediator.Send(usuarioRegistro);
 
@@ -31,7 +31,7 @@ namespace EmailMarketing.API.Controllers.Public
         }
 
         [HttpPost("autenticar")]
-        public async Task<ActionResult> Login(AuthenticarSeUsuarioExisteQuery usuarioLogin)
+        public async Task<ActionResult> Login([FromBody]AuthenticarSeUsuarioExisteQuery usuarioLogin)
         {
             var empresas = await _mediator.Send(usuarioLogin);
             if (usuarioLogin.IdEmpresa == Guid.Empty && empresas.Count > 1)
@@ -47,39 +47,5 @@ namespace EmailMarketing.API.Controllers.Public
 
             return CustomResponse(token);
         }
-
-        [HttpPost("refresh-token")]
-        public async Task<ActionResult> RefreshToken([FromBody] string refreshToken)
-        {
-            if (string.IsNullOrEmpty(refreshToken))
-            {
-                AddErrorToStack("Invalid Refresh Token");
-                return CustomResponse();
-            }
-
-            if (!JwtOptions.Expired(refreshToken))
-            {
-                AddErrorToStack("Not Expired Refresh Token");
-                return CustomResponse();
-            }
-
-            var email = JwtOptions.GetEmail(refreshToken);
-            var idEmpresa = JwtOptions.GetIdEmpresa(refreshToken);
-            if (string.IsNullOrEmpty(email) || idEmpresa == Guid.Empty)
-            {
-                AddErrorToStack("Expired Refresh Token");
-                return CustomResponse();
-            }
-
-            var token = await _mediator.Send(new GerarTokenCommand
-            {
-                Email = email,
-                IdEmpresa = idEmpresa
-            });
-
-            return CustomResponse(token);
-        }
-
-
     }
 }

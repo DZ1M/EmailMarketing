@@ -1,7 +1,9 @@
-﻿using EmailMarketing.Architecture.WebApi.Core.Filter;
+﻿using EmailMarketing.Architecture.WebApi.Core.Configuration;
+using EmailMarketing.Architecture.WebApi.Core.Filter;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using Microsoft.Extensions.Options;
 
 namespace EmailMarketing.API.Configuration
 {
@@ -10,10 +12,11 @@ namespace EmailMarketing.API.Configuration
         public static IServiceCollection AddSwaggerConfiguration(this IServiceCollection services)
         {
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen(c => {
+            services.AddSwaggerGen(c =>
+            {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Api de Email Marketing",
+                    Title = "API Email Marketing",
                     Description = "Api responsavel pelo gerenciamento do sistema."
                 });
 
@@ -22,12 +25,8 @@ namespace EmailMarketing.API.Configuration
                 c.OperationFilter<JsonIgnoreQueryOperationFilter>();
                 c.OperationFilter<JsonIgnorePathOperationFilter>();
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-               
-                var xmlFiles = Directory.GetFiles(AppContext.BaseDirectory, "*.xml");
-                foreach (var xmlFile in xmlFiles)
-                {
-                    c.IncludeXmlComments(xmlFile);
-                }
+
+                SwaggerExtensions.AddSwaggerXml(c);
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
@@ -67,7 +66,6 @@ namespace EmailMarketing.API.Configuration
                 {
                     c.DefaultModelsExpandDepth(-1);
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-
                 });
             }
 
