@@ -3,6 +3,7 @@ using EmailMarketing.Application;
 using EmailMarketing.Architecture.WebApi.Core.Auth;
 using EmailMarketing.Infra;
 using Serilog;
+using EmailMarketing.Architecture.MessageBus;
 
 namespace EmailMarketing.API
 {
@@ -39,6 +40,8 @@ namespace EmailMarketing.API
             services.InjectApplication();
 
             services.InjectInfra(Configuration);
+
+            services.InjectMessageBus(Configuration);
 
             services.AddSwaggerConfiguration();
 

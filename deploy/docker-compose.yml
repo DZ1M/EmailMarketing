@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+
+    emailmarketing-rabbit:
+        image: rabbitmq:3-management
+        container_name: emailmarketing-rabbit
+        ports:
+            - 5672
+            - 15672
+        environment:
+            RABBITMQ_DEFAULT_USER: "emailmarketing"
+            RABBITMQ_DEFAULT_PASS: "emailmarketing"
+
+
+    database-emailmarketing:
+            image: postgres
+            container_name: emailmarketing-database
+            ports:
+                - "5435:5432"
+            environment:
+                POSTGRES_PASSWORD: "123456"
+
+    # api-emailmarketing:
+        # image: DZ1M/EmailMarketing
+        # container_name: emailmarketing-api    
+        # build: 
+            # context: ../src
+            # dockerfile: ./02 - APIs/EmailMarketing.API/Dockerfile  
+        # restart: always    
+        # environment: 
+            # ASPNETCORE_ENVIRONMENT: Docker
+            # ASPNETCORE_URLS: https://+:443;http://+:80
+        # volumes:
+            # - ./certs:/https:ro
+        # depends_on:
+            # - emailmarketing-rabbit
+            # - database-emailmarketing

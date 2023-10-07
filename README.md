@@ -13,3 +13,9 @@ Previsão de Funcionalidades:
 ![Email Marketing](https://github.com/DZ1M/EmailMarketing/assets/61568662/d5544a82-92ec-4eb5-bf2f-5d8011ff8b44)
 
 ### Arquitetura
+
+## Contribuidores
+
+<a href="https://github.com/DZ1M/EmailMarketing/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=DZ1M/EmailMarketing" />
+</a>

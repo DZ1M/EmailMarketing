@@ -1,8 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using MediatR;
+using System.Text.Json.Serialization;
 
 namespace EmailMarketing.Architecture.Core.Messages
 {
-    public abstract class Command
+    public abstract class Command : Message, INotification
     {
         [JsonIgnore]
         public Guid IdUsuario { get; set; }

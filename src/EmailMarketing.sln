@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4BD61449-24F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F7524D1C-9B73-4A44-AFA1-CFDB86BD3F1F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{0D3FA00F-3DB6-480E-9A71-6279BE51B57F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{1C17B52C-0665-4929-A83A-B1CCA02B19DB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Architecture", "01 - Architecture", "{C3799E8F-A11D-4A78-83D0-0ACB7B6006CD}"
@@ -39,7 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMarketing.Domain", "02
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMarketing.Infra", "02 - APIs\EmailMarketing.Infra\EmailMarketing.Infra.csproj", "{8C1DFA2D-85AF-4A33-B089-71160EBFE2EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMarketing.Architecture.WebApi.Core", "01 - Architecture\EmailMarketing.Architecture.WebApi.Core\EmailMarketing.Architecture.WebApi.Core.csproj", "{C1345FF0-9EF1-4BC2-9F8C-47C9B40239A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMarketing.Architecture.WebApi.Core", "01 - Architecture\EmailMarketing.Architecture.WebApi.Core\EmailMarketing.Architecture.WebApi.Core.csproj", "{C1345FF0-9EF1-4BC2-9F8C-47C9B40239A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMarketing.Architecture.MessageBus", "01 - Architecture\EmailMarketing.Architecture.MessageBus\EmailMarketing.Architecture.MessageBus.csproj", "{E52809C9-51D0-464C-B1CC-88B0E28B6AB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +75,10 @@ Global
 		{C1345FF0-9EF1-4BC2-9F8C-47C9B40239A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1345FF0-9EF1-4BC2-9F8C-47C9B40239A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1345FF0-9EF1-4BC2-9F8C-47C9B40239A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E52809C9-51D0-464C-B1CC-88B0E28B6AB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E52809C9-51D0-464C-B1CC-88B0E28B6AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E52809C9-51D0-464C-B1CC-88B0E28B6AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E52809C9-51D0-464C-B1CC-88B0E28B6AB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +99,7 @@ Global
 		{63ADE0A1-C424-46A7-9AF1-1E10354D4F3F} = {C8B63B91-682B-4192-8C0A-072703DF2241}
 		{8C1DFA2D-85AF-4A33-B089-71160EBFE2EC} = {C8B63B91-682B-4192-8C0A-072703DF2241}
 		{C1345FF0-9EF1-4BC2-9F8C-47C9B40239A6} = {C3799E8F-A11D-4A78-83D0-0ACB7B6006CD}
+		{E52809C9-51D0-464C-B1CC-88B0E28B6AB9} = {C3799E8F-A11D-4A78-83D0-0ACB7B6006CD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3E5B226C-DED4-48C0-AC4F-F9AFDDBD578E}

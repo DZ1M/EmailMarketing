@@ -16,6 +16,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.Core\EmailMarketing.Architecture.Core.csproj" />
 		<ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.Helpers\EmailMarketing.Architecture.Helpers.csproj" />
+		<ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.MessageBus\EmailMarketing.Architecture.MessageBus.csproj" />
 		<ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.WebApi.Core\EmailMarketing.Architecture.WebApi.Core.csproj" />
 		<ProjectReference Include="..\EmailMarketing.Domain\EmailMarketing.Domain.csproj" />
 	</ItemGroup>
