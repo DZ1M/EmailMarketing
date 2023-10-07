@@ -1,6 +1,8 @@
-﻿using EmailMarketing.Architecture.WebApi.Core.Auth;
+﻿using EmailMarketing.Application.Admin.Auth.Register;
+using EmailMarketing.Application.Usuario.Queries.Authenticar;
+using EmailMarketing.Application.Usuario.Queries.GerarJwt;
+using EmailMarketing.Architecture.WebApi.Core.Auth;
 using EmailMarketing.Architecture.WebApi.Core.Controllers;
-using EmailMarketing.Architecture.WebApi.Core.Usuario;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,15 +12,13 @@ namespace EmailMarketing.API.Controllers.Public
     public class AuthController : BaseMainController
     {
         private readonly ISender _mediator;
-        private readonly IAspNetUser _user;
-        public AuthController(ISender mediator, IAspNetUser user)
+        public AuthController(ISender mediator)
         {
             _mediator = mediator;
-            _user = user;
         }
 
         [HttpPost("nova-conta")]
-        public async Task<ActionResult> Registrar(RegisterUsuarioCommand usuarioRegistro)
+        public async Task<ActionResult> Registrar(RegistrarUsuarioCommand usuarioRegistro)
         {
             await _mediator.Send(usuarioRegistro);
 
@@ -29,6 +29,7 @@ namespace EmailMarketing.API.Controllers.Public
 
             return CustomResponse(token);
         }
+
         [HttpPost("autenticar")]
         public async Task<ActionResult> Login(AuthenticarSeUsuarioExisteQuery usuarioLogin)
         {
@@ -42,27 +43,6 @@ namespace EmailMarketing.API.Controllers.Public
             {
                 Email = usuarioLogin.Email,
                 IdEmpresa = usuarioLogin.IdEmpresa
-            });
-
-            return CustomResponse(token);
-        }
-
-        [HttpGet("recuperar-senha")]
-        public async Task<ActionResult> RecuperarSenha([FromQuery] string email)
-        {
-            await _mediator.Send(new RecuperarSenhaUsuarioCommand { Email = email });
-
-            return CustomResponse();
-        }
-
-        [HttpPost("redefinir-senha")]
-        public async Task<ActionResult> RedefinirSenha([FromBody] RedefinirSenhaUsuarioCommand request)
-        {
-            await _mediator.Send(request);
-
-            var token = await _mediator.Send(new GerarTokenCommand
-            {
-                Email = request.Email,
             });
 
             return CustomResponse(token);

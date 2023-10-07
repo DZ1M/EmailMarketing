@@ -2,9 +2,9 @@
 
 namespace EmailMarketing.Application.Admin.Auth.Register
 {
-    public class RegisterUsuarioCommandValidator : AbstractValidator<RegisterUsuarioCommand>
+    public class RegistrarUsuarioCommandValidator : AbstractValidator<RegistrarUsuarioCommand>
     {
-        public RegisterUsuarioCommandValidator()
+        public RegistrarUsuarioCommandValidator()
         {
             RuleFor(c => c.Nome)
                 .NotEmpty();

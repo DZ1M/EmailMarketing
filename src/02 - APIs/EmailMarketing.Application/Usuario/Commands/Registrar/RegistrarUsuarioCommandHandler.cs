@@ -7,16 +7,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EmailMarketing.Application.Admin.Auth.Register
 {
-    public class RegisterUsuarioCommandHandler : IRequestHandler<RegisterUsuarioCommand, Unit>
+    public class RegistrarUsuarioCommandHandler : IRequestHandler<RegistrarUsuarioCommand, Unit>
     {
         private readonly IUnitOfWork _repository;
 
-        public RegisterUsuarioCommandHandler(IUnitOfWork repository)
+        public RegistrarUsuarioCommandHandler(IUnitOfWork repository)
         {
             _repository = repository;
         }
 
-        public async Task<Unit> Handle(RegisterUsuarioCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(RegistrarUsuarioCommand request, CancellationToken cancellationToken)
         {
             if (await _repository.Usuario.Query()
                 .AnyAsync(x =>

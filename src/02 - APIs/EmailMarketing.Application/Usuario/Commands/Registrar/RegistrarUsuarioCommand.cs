@@ -3,7 +3,7 @@ using MediatR;
 
 namespace EmailMarketing.Application.Admin.Auth.Register
 {
-    public class RegisterUsuarioCommand : Command, IRequest<Unit>
+    public class RegistrarUsuarioCommand : Command, IRequest<Unit>
     {
         /// <summary>Nome do Usuário</summary>
         /// <example>Valdemar</example>

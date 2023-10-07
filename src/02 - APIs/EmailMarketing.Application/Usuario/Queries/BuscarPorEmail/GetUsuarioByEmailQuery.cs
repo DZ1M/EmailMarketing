@@ -3,11 +3,6 @@ using EmailMarketing.Architecture.Core.Messages;
 using EmailMarketing.Domain.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EmailMarketing.Application.Usuario.Queries.BuscarPorEmail
 {

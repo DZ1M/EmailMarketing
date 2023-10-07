@@ -1,5 +1,7 @@
-﻿using EmailMarketing.Architecture.WebApi.Core.Auth;
+﻿using EmailMarketing.Architecture.Core.Exceptions;
+using EmailMarketing.Architecture.WebApi.Core.Auth;
 using EmailMarketing.Architecture.WebApi.Core.Configuration;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using System.IO.Compression;
@@ -39,7 +41,6 @@ namespace EmailMarketing.API.Configuration
 
         public static WebApplication UseApiConfiguration(this WebApplication app)
         {
-
             app.UseHttpsRedirection();
             app.UseRouting();
 
@@ -54,6 +55,12 @@ namespace EmailMarketing.API.Configuration
             app.UseGenericHealthCheck("/healthz");
 
             return app;
+        }
+        public static void AppConfigureExceptionFilter(this IServiceCollection builder)
+        {
+            builder
+                .AddControllersWithViews(options => options.Filters.Add<ApiExceptionFilterAttribute>())
+                .AddFluentValidation(x => x.AutomaticValidationEnabled = false);
         }
     }
 }
