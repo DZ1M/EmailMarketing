@@ -14,10 +14,6 @@
 		<PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-    <Folder Include="Controllers\Private\" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.WebApi.Core\EmailMarketing.Architecture.WebApi.Core.csproj" />
     <ProjectReference Include="..\EmailMarketing.Application\EmailMarketing.Application.csproj" />
