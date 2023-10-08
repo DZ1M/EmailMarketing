@@ -26,11 +26,10 @@ namespace EmailMarketing.SenderMail.WorkerService
         private async Task EnviarMensagem(MensagemIntegrationEvent message)
         {
             Console.WriteLine(JsonHelper.Serialize(message));
-            using (var scope = _serviceProvider.CreateScope())
-            {
-                var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
-                //var sucesso = await mediator.Send(clientCommand);
-            }
+            using var scope = _serviceProvider.CreateScope();
+
+            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+            //var sucesso = await mediator.Send(clientCommand);
         }
     }
 }

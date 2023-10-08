@@ -31,7 +31,7 @@ namespace EmailMarketing.Application.Usuario.Queries.Authenticar
 
         public async Task<IList<EmpresaDto>> Handle(AuthenticarSeUsuarioExisteQuery request, CancellationToken cancellationToken)
         {
-            var account = await _repository.Usuario.Query()
+            var account = await _repository.Usuarios.Query()
                 .Include(c => c.Empresas)
                     .ThenInclude(x => x.Empresa)
                 .Where(x => x.Senha == request.Senha.Sha256() &&
