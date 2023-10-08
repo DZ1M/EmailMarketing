@@ -15,7 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.Helpers\EmailMarketing.Architecture.Helpers.csproj" />
-    <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.MessageBus\EmailMarketing.Architecture.MessageBus.csproj" />
+	  <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.Core\EmailMarketing.Architecture.Core.csproj" />
+	  <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.Helpers\EmailMarketing.Architecture.Helpers.csproj" />
+	  <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.MessageBus\EmailMarketing.Architecture.MessageBus.csproj" />
+	  <ProjectReference Include="..\EmailMarketing.SenderMail.Application\EmailMarketing.SenderMail.Application.csproj" />
+	  <ProjectReference Include="..\EmailMarketing.SenderMail.Infra\EmailMarketing.SenderMail.Infra.csproj" />
   </ItemGroup>
+
 </Project>
