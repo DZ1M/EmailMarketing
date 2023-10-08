@@ -18,7 +18,7 @@ namespace EmailMarketing.Application.Admin.Auth.Register
 
         public async Task<Unit> Handle(RegistrarUsuarioCommand request, CancellationToken cancellationToken)
         {
-            if (await _repository.Usuario.Query()
+            if (await _repository.Usuarios.Query()
                 .AnyAsync(x =>
                     EF.Functions.ILike(EF.Functions.Unaccent(x.Email), $"%{request.Email.Replace(" ", "%")}%")
                     )
@@ -33,7 +33,7 @@ namespace EmailMarketing.Application.Admin.Auth.Register
 
             var empresa = new Empresa(request.NomeEmpresa);
 
-            var user = new EmailMarketing.Domain.Entities.Usuario(
+            var user = new Domain.Entities.Usuario(
                 nome: request.Nome,
                 email: request.Email,
                 senha: request.Senha.Sha256(),
@@ -41,16 +41,16 @@ namespace EmailMarketing.Application.Admin.Auth.Register
                 telefone: "",
                 url: "");
 
-            user.Empresas.Add(new UsuarioEmpresa(user.Id, empresa.Id));
+            user.AddEmpresa(new UsuarioEmpresa(user.Id, empresa.Id));
 
             foreach (var role in userRoles)
             {
-                user.Permissoes.Add(new UsuarioPermissao(user.Id, role.Id));
+                user.AddRole(new UsuarioPermissao(user.Id, role.Id));
             }
 
 
-            _repository.Empresa.Create(empresa);
-            _repository.Usuario.Create(user);
+            _repository.Empresas.Create(empresa);
+            _repository.Usuarios.Create(user);
 
             var complete = await _repository.CommitAsync();
 

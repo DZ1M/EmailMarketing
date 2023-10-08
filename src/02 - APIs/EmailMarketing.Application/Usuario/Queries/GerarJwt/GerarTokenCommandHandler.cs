@@ -22,7 +22,7 @@ namespace EmailMarketing.Application.Usuario.Queries.GerarJwt
 
         public async Task<UsuarioRespostaLogin> Handle(GerarTokenCommand request, CancellationToken cancellationToken)
         {
-            var user = await _sender.Send(new GetUsuarioByEmailQuery { Email = request.Email });
+            var user = await _sender.Send(new GetUsuarioByEmailQuery { Email = request.Email }, cancellationToken);
 
             var identityClaims = ObterClaimsUsuario(user, request.IdEmpresa);
 
@@ -31,7 +31,7 @@ namespace EmailMarketing.Application.Usuario.Queries.GerarJwt
             return ObterRespostaToken(encodedToken, user);
         }
 
-        private ClaimsIdentity ObterClaimsUsuario(EmailMarketing.Domain.Entities.Usuario usuario, Guid idEmpresa)
+        private static ClaimsIdentity ObterClaimsUsuario(UsuarioDto usuario, Guid idEmpresa)
         {
             var claims = new List<Claim>
             {
@@ -46,7 +46,7 @@ namespace EmailMarketing.Application.Usuario.Queries.GerarJwt
             // Adiciona as Roles do usuario
             foreach (var userRole in usuario.Permissoes)
             {
-                claims.Add(new Claim(userRole.Permissao.Nome, userRole.Permissao.Valor));
+                claims.Add(new Claim(userRole.Nome, userRole.Valor));
             }
 
 
@@ -55,17 +55,17 @@ namespace EmailMarketing.Application.Usuario.Queries.GerarJwt
             {
                 if (usuario.Empresas.Count == 1)
                 {
-                    claims.Add(new Claim("Empresa", userEmpresa.IdEmpresa.ToString()));
+                    claims.Add(new Claim("Empresa", userEmpresa.Id.ToString()));
                 }
                 else
                 {
-                    if (userEmpresa.IdEmpresa == idEmpresa)
+                    if (userEmpresa.Id == idEmpresa)
                     {
-                        claims.Add(new Claim("Empresa", userEmpresa.IdEmpresa.ToString()));
+                        claims.Add(new Claim("Empresa", userEmpresa.Id.ToString()));
                     }
                     else
                     {
-                        claims.Add(new Claim($"Empresa{indice}", userEmpresa.IdEmpresa.ToString()));
+                        claims.Add(new Claim($"Empresa{indice}", userEmpresa.Id.ToString()));
                         indice++;
                     }
                 }
@@ -91,7 +91,7 @@ namespace EmailMarketing.Application.Usuario.Queries.GerarJwt
 
             return tokenHandler.WriteToken(token);
         }
-        private UsuarioRespostaLogin ObterRespostaToken(string encodedToken, EmailMarketing.Domain.Entities.Usuario usuario)
+        private UsuarioRespostaLogin ObterRespostaToken(string encodedToken, UsuarioDto usuario)
         {
             return new UsuarioRespostaLogin
             {
@@ -102,7 +102,7 @@ namespace EmailMarketing.Application.Usuario.Queries.GerarJwt
                     Name = usuario.Nome,
                     Id = usuario.Id.ToString(),
                     Email = usuario.Email,
-                    Claims = usuario.Permissoes.Select(v => v.Permissao).Select(c => new UsuarioClaim { Type = c.Nome, Value = c.Valor })
+                    Claims = usuario.Permissoes.Select(v => v).Select(c => new UsuarioClaim { Type = c.Nome, Value = c.Valor })
                 }
             };
         }

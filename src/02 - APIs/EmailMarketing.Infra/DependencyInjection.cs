@@ -15,6 +15,8 @@ namespace EmailMarketing.Infra
             services.AddScoped<IEmpresaRepository, EmpresaRepository>();
             services.AddScoped<IPermissoesRepository, PermissoesRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IMensagemRepository, MensagemRepository>();
+            services.AddScoped<ICampanhaRepository, CampanhaRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddDbContext<EmailMarketingContext>(options =>
             {
