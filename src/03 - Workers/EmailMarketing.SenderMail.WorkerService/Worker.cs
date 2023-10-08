@@ -25,13 +25,11 @@ namespace EmailMarketing.SenderMail.WorkerService
         }
         private async Task EnviarMensagem(MensagemIntegrationEvent message)
         {
-            await Task.Delay(500); // 2 mensagens por segundo
             Console.WriteLine(JsonHelper.Serialize(message));
-            using (var scope = _serviceProvider.CreateScope())
-            {
-                var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
-                //var sucesso = await mediator.Send(clientCommand);
-            }
+            using var scope = _serviceProvider.CreateScope();
+
+            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+            //var sucesso = await mediator.Send(clientCommand);
         }
     }
 }

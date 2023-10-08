@@ -2,9 +2,11 @@
 {
     public interface IUnitOfWork
     {
-        IEmpresaRepository Empresa { get; }
+        IEmpresaRepository Empresas { get; }
         IPermissoesRepository Permissoes { get; }
-        IUsuarioRepository Usuario { get; }
+        IUsuarioRepository Usuarios { get; }
+        IMensagemRepository Mensagens { get; }
+        ICampanhaRepository Campanhas { get; }
         Task<bool> CommitAsync();
     }
 }

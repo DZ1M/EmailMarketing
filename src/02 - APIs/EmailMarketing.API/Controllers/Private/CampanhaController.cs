@@ -54,7 +54,7 @@ namespace EmailMarketing.API.Controllers.Private
         /// <summary>
         /// Deleta uma campanha
         /// </summary>
-        /// <response code="204">Success: Campaanha excluida com sucesso</response>
+        /// <response code="204">Success: Campanha excluida com sucesso</response>
         /// <response code="400">Failure: Invalid request</response>
         [ClaimsAuthorize("Campanha", "Delete")]
         [HttpDelete("{id}")]

@@ -33,17 +33,15 @@ namespace EmailMarketing.Domain.Entities
         {
             Senha = senha;
         }
-        public void AddRoles(UsuarioPermissao role)
+        public void AddRole(UsuarioPermissao role)
         {
-            if (Permissoes is null)
-                Permissoes = new List<UsuarioPermissao>();
+            Permissoes ??= new List<UsuarioPermissao>();
 
             Permissoes.Add(role);
         }
-        public void AddEmpresas(UsuarioEmpresa empresa)
+        public void AddEmpresa(UsuarioEmpresa empresa)
         {
-            if (Empresas is null)
-                Empresas = new List<UsuarioEmpresa>();
+            Empresas ??= new List<UsuarioEmpresa>();
 
             Empresas.Add(empresa);
         }
