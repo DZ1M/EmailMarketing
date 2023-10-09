@@ -13,8 +13,8 @@ namespace EmailMarketing.SenderMail.Application.EnviarEmail
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IConfiguration _configuration;
-        private readonly ILogger _logger;
-        public EnviarMensagemCommandHandler(IUnitOfWork unitOfWork, ILogger logger, IConfiguration configuration) : base(configuration)
+        private readonly ILogger<EnviarMensagemCommandHandler> _logger;
+        public EnviarMensagemCommandHandler(IUnitOfWork unitOfWork, ILogger<EnviarMensagemCommandHandler> logger, IConfiguration configuration) : base(configuration)
         {
             _unitOfWork = unitOfWork;
             _configuration = configuration;

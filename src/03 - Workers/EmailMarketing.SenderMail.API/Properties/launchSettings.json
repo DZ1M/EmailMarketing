@@ -1,0 +1,55 @@
+{
+  "profiles": {
+    "http": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ENCRYPT_EMAIL": "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5136"
+    },
+    "https": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ENCRYPT_EMAIL": "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7183;http://localhost:5136"
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ENCRYPT_EMAIL": "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "environmentVariables": {
+        "ASPNETCORE_URLS": "https://+:443;http://+:80",
+        "ENCRYPT_EMAIL": "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x"
+      },
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  },
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:2506",
+      "sslPort": 44302
+    }
+  }
+}

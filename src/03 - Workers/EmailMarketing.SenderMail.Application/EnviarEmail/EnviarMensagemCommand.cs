@@ -9,6 +9,7 @@ namespace EmailMarketing.SenderMail.Application.EnviarEmail
         public string Texto { get; set; }
         public string Codigo { get; set; }
         public Guid IdEmpresa { get; set; }
+        public EnviarMensagemCommand() { }
         public EnviarMensagemCommand(string nome, string email, string texto, string codigo, Guid idEmpresa)
         {
             Nome = nome;
