@@ -11,6 +11,7 @@ namespace EmailMarketing.API.Controllers.Private
         [HttpPost]
         public async Task<IActionResult> Index()
         {
+
             var mediator = await Mediator.Send(new MensagemCommand { });
 
             return CustomResponse(mediator);
