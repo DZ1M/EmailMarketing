@@ -3,7 +3,8 @@
     "EmailMarketing.SenderMail.WorkerService": {
       "commandName": "Project",
       "environmentVariables": {
-        "DOTNET_ENVIRONMENT": "Development"
+        "DOTNET_ENVIRONMENT": "Development",
+        "ENCRYPT_EMAIL": "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x"
       },
       "dotnetRunMessages": true
     },

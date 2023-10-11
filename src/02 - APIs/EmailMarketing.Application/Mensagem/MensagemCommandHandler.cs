@@ -16,11 +16,15 @@ namespace EmailMarketing.Application.Mensagem
         public async Task<Unit> Handle(MensagemCommand request, CancellationToken cancellationToken)
         {
             // Send QUEUE
-            for (var i = 0; i < 10; i++)
-            {
-                var command = new MensagemIntegrationEvent(Guid.NewGuid(), "Teste", "teste@teste.com", "teste 123");
-                await _bus.PublishAsync(command);
-            }
+
+            var codigoUrl = Guid.NewGuid().ToString()[..8] + ".png";
+
+            // Aqui vai salvar a mensagem no banco 
+
+            // Aqui dispara a mensagem para a fila
+            var command = new MensagemIntegrationEvent(Guid.NewGuid(), "Teste", "teste@teste.com", "teste 123", codigoUrl, request.IdEmpresa);
+            await _bus.PublishAsync(command);
+
             return Unit.Value;
         }
     }
