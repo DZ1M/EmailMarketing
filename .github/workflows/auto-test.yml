@@ -16,7 +16,6 @@ jobs:
         uses: actions/setup-dotnet@v1.7.2
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
-        working-directory: ./app
       - name: Install dependencies
         run: cd ./src dotnet restore
       - name: Build
