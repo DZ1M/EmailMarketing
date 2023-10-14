@@ -1,14 +1,12 @@
 ﻿using EmailMarketing.Domain.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using EmailMarketing.Domain.Enums;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EmailMarketing.Infra.Mappings
 {
-    public class MensagemConfiguration : IEntityTypeConfiguration<Mensagem>
+    public class ContatoConfiguration : IEntityTypeConfiguration<Contato>
     {
-        public void Configure(EntityTypeBuilder<Mensagem> builder)
+        public void Configure(EntityTypeBuilder<Contato> builder)
         {
             builder.HasKey(c => c.Id);
 
@@ -22,21 +20,11 @@ namespace EmailMarketing.Infra.Mappings
 
             builder.Property(c => c.Nome)
                 .HasColumnName("nome")
-                .HasColumnType("varchar(255)");
+                .HasColumnType("varchar(200)");
 
-            builder.Property(c => c.TipoMensagem)
-                .HasColumnName("tipo_mensagem")
-                .HasColumnType("varchar(25)")
-                .HasConversion(new EnumToStringConverter<TipoMensagemEnum>())
-                .IsRequired();
-
-            builder.Property(c => c.IdCampanha)
-                .HasColumnName("id_campanha")
-                .IsRequired();
-
-            builder.Property(c => c.IdModelo)
-                .HasColumnName("id_campanha")
-                .IsRequired();
+            builder.Property(c => c.Email.Endereco)
+                .HasColumnName("email")
+                .HasColumnType("varchar(150)");
 
             builder.Property(x => x.CriadoEm)
                 .HasColumnType("timestamp without time zone")
@@ -54,11 +42,7 @@ namespace EmailMarketing.Infra.Mappings
             builder.Property(c => c.AtualizadoPor)
                 .HasColumnName("atualizado_por");
 
-            builder.HasMany(x => x.Contatos)
-                .WithOne()
-                .HasForeignKey(c => c.IdMensagem);
-
-            builder.ToTable("mensagems", "marketing");
+            builder.ToTable("contatos", "marketing");
         }
     }
 }
