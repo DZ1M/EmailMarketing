@@ -13,7 +13,6 @@ namespace EmailMarketing.Domain.Entities
 
         public string Nome { get; private set; }
         public DateTime Data { get; private set; }
-        public bool Excluido { get; private set; }
         public Guid IdUsuario { get; private set; }
         public Usuario Usuario { get; private set; }
     }
