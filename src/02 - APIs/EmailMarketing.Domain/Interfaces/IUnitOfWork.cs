@@ -9,6 +9,7 @@
         ICampanhaRepository Campanhas { get; }
         IContatoRepository Contatos { get; }
         IMensagemContatoRepository MensagemContatos { get; }
+        IModeloRepository Modelos { get; }
         Task<bool> CommitAsync();
     }
 }

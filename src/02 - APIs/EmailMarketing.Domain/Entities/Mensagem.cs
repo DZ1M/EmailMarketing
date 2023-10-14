@@ -11,6 +11,8 @@ namespace EmailMarketing.Domain.Entities
         public Guid IdModelo { get; private set; }
         public Guid IdCampanha { get; private set; }
         public ICollection<MensagemContato> Contatos { get; private set; }
+        public Modelo Modelo { get; private set; }
+        public Campanha Campanha { get; private set; }
 
     }
 }

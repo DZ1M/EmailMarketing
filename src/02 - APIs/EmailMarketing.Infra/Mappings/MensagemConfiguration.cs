@@ -58,6 +58,15 @@ namespace EmailMarketing.Infra.Mappings
                 .WithOne()
                 .HasForeignKey(c => c.IdMensagem);
 
+
+            builder.HasOne(x => x.Modelo)
+                .WithMany()
+                .HasForeignKey(c => c.IdModelo);
+
+            builder.HasOne(x => x.Campanha)
+                .WithMany()
+                .HasForeignKey(c => c.IdCampanha);
+
             builder.ToTable("mensagems", "marketing");
         }
     }
