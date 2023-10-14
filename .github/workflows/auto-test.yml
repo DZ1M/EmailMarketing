@@ -11,9 +11,9 @@ jobs:
         dotnet-version: ['7.0.x']
 
     steps:
-      - name: Enter folder
-        run: cd ./src
       - uses: actions/checkout@v2
+      - name: Enter folder
+        run: cd /src
       - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
         uses: actions/setup-dotnet@v1.7.2
         with:
