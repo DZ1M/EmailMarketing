@@ -23,6 +23,11 @@ namespace EmailMarketing.Infra.Mappings
                 .HasColumnName("id_empresa")
                 .IsRequired();
 
+            builder.Property(c => c.Data)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("data")
+                .IsRequired();
+
             builder.Property(x => x.CriadoEm)
                 .HasColumnType("timestamp without time zone")
                 .HasDefaultValueSql("NOW()")

@@ -35,7 +35,7 @@ namespace EmailMarketing.Infra.Mappings
                 .IsRequired();
 
             builder.Property(c => c.IdModelo)
-                .HasColumnName("id_campanha")
+                .HasColumnName("id_modelo")
                 .IsRequired();
 
             builder.Property(x => x.CriadoEm)
