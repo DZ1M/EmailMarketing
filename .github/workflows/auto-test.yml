@@ -14,8 +14,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Enter the / directory
+        run: cd ./
+        
       - name: Enter the /src directory
-        run: cd ./src
+        run: cd src
         
       - name: List files in the directory (for debugging purposes)
         run: ls
