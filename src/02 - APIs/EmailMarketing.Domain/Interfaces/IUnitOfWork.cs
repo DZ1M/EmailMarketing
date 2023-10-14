@@ -7,6 +7,8 @@
         IUsuarioRepository Usuarios { get; }
         IMensagemRepository Mensagens { get; }
         ICampanhaRepository Campanhas { get; }
+        IContatoRepository Contatos { get; }
+        IMensagemContatoRepository MensagemContatos { get; }
         Task<bool> CommitAsync();
     }
 }
