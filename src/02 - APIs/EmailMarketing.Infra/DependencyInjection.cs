@@ -15,11 +15,11 @@ namespace EmailMarketing.Infra
             services.AddScoped<IEmpresaRepository, EmpresaRepository>();
             services.AddScoped<IPermissoesRepository, PermissoesRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-            services.AddScoped<IMensagemRepository, MensagemRepository>();
             services.AddScoped<IContatoRepository, ContatoRepository>();
             services.AddScoped<ICampanhaRepository, CampanhaRepository>();
-            services.AddScoped<IMensagemContatoRepository, MensagemContatoRepository>();
+            services.AddScoped<ICampanhaContatoRepository, CampanhaContatoRepository>();
             services.AddScoped<IModeloRepository, ModeloRepository>();
+            services.AddScoped<IPastaRepository, PastaRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddDbContext<EmailMarketingContext>(options =>
             {

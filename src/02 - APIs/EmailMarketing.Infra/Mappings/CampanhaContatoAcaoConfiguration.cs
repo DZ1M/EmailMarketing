@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EmailMarketing.Infra.Mappings
 {
-    public class MensagemContatoAcaoConfiguration : IEntityTypeConfiguration<MensagemContatoAcao>
+    public class CampanhaContatoAcaoConfiguration : IEntityTypeConfiguration<CampanhaContatoAcao>
     {
-        public void Configure(EntityTypeBuilder<MensagemContatoAcao> builder)
+        public void Configure(EntityTypeBuilder<CampanhaContatoAcao> builder)
         {
             builder.Ignore(c => c.IdEmpresa);
             builder.Ignore(c => c.CriadoPor);
@@ -21,8 +21,8 @@ namespace EmailMarketing.Infra.Mappings
                 .HasColumnName("id")
                 .HasDefaultValueSql("uuid_generate_v1()");
 
-            builder.Property(c => c.IdMensagemContato)
-                .HasColumnName("id_mensagem_contato")
+            builder.Property(c => c.IdCampanhaContato)
+                .HasColumnName("id_campanha_contato")
                 .IsRequired();
 
             builder.Property(c => c.Acao)
@@ -36,7 +36,7 @@ namespace EmailMarketing.Infra.Mappings
                 .HasDefaultValueSql("NOW()")
                 .HasColumnName("criado_em");
 
-            builder.ToTable("mensagem_contatos_acoes", "marketing");
+            builder.ToTable("campanhas_contatos_acoes", "marketing");
         }
     }
 }

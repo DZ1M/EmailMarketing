@@ -4,9 +4,9 @@ using EmailMarketing.Infra.Context;
 
 namespace EmailMarketing.Infra.Repositorys
 {
-    public class MensagemRepository : RepositoryBase<Mensagem>, IMensagemRepository
+    public class PastaRepository : RepositoryBase<Pasta>, IPastaRepository
     {
-        public MensagemRepository(EmailMarketingContext context) : base(context)
+        public PastaRepository(EmailMarketingContext context) : base(context)
         {
         }
     }

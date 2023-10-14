@@ -24,10 +24,11 @@ namespace EmailMarketing.Infra.Mappings
 
             builder.Property(c => c.Email)
                 .HasColumnName("email")
-                .HasColumnType("varchar(150)")
-                .HasConversion(
-                         email => email.Endereco, // Convert the complex type to a string
-                        endereco => new Email(endereco));
+                .HasColumnType("varchar(150)");
+
+            builder.Property(c => c.Telefone)
+                .HasColumnName("telefone")
+                .HasColumnType("varchar(25)");
 
             builder.Property(x => x.CriadoEm)
                 .HasColumnType("timestamp without time zone")

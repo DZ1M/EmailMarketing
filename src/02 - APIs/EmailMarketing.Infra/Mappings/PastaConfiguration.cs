@@ -1,14 +1,12 @@
 ﻿using EmailMarketing.Domain.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using EmailMarketing.Domain.Enums;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EmailMarketing.Infra.Mappings
 {
-    public class ModeloConfiguration : IEntityTypeConfiguration<Modelo>
+    public class PastaConfiguration : IEntityTypeConfiguration<Pasta>
     {
-        public void Configure(EntityTypeBuilder<Modelo> builder)
+        public void Configure(EntityTypeBuilder<Pasta> builder)
         {
             builder.HasKey(c => c.Id);
 
@@ -18,17 +16,7 @@ namespace EmailMarketing.Infra.Mappings
 
             builder.Property(c => c.Nome)
                 .HasColumnName("nome")
-                .HasColumnType("varchar(255)");
-
-            builder.Property(c => c.Texto)
-                .HasColumnName("texto")
-                .HasColumnType("text");
-
-            builder.Property(c => c.Tipo)
-                .HasColumnName("tipo")
-                .HasColumnType("varchar(25)")
-                .HasConversion(new EnumToStringConverter<TipoMensagemEnum>())
-                .IsRequired();
+                .HasColumnType("varchar(150)");
 
             builder.Property(c => c.IdEmpresa)
                 .HasColumnName("id_empresa")
@@ -50,7 +38,7 @@ namespace EmailMarketing.Infra.Mappings
             builder.Property(c => c.AtualizadoPor)
                 .HasColumnName("atualizado_por");
 
-            builder.ToTable("modelos", "marketing");
+            builder.ToTable("pastas", "marketing");
         }
     }
 }

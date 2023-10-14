@@ -9,30 +9,30 @@ namespace EmailMarketing.Infra
         public IEmpresaRepository Empresas { get; }
         public IPermissoesRepository Permissoes { get; }
         public IUsuarioRepository Usuarios { get; }
-        public IMensagemRepository Mensagens { get; }
         public ICampanhaRepository Campanhas { get; }
         public IContatoRepository Contatos { get; }
-        public IMensagemContatoRepository MensagemContatos { get; }
+        public ICampanhaContatoRepository CampanhaContatos { get; }
         public IModeloRepository Modelos { get; }
+        public IPastaRepository Pastas { get; }
         public UnitOfWork(EmailMarketingContext context,
             IEmpresaRepository empresa,
             IPermissoesRepository permissoes,
             IUsuarioRepository usuario,
-            IMensagemRepository mensagens,
             ICampanhaRepository campanhas,
             IContatoRepository contatos,
-            IMensagemContatoRepository mensagensContatos,
-            IModeloRepository modelos)
+            ICampanhaContatoRepository campanhasContatos,
+            IModeloRepository modelos,
+            IPastaRepository pastas)
         {
             _context = context;
             Empresas = empresa;
             Permissoes = permissoes;
             Usuarios = usuario;
-            Mensagens = mensagens;
             Campanhas = campanhas;
             Contatos = contatos;
-            MensagemContatos = mensagensContatos;
+            CampanhaContatos = campanhasContatos;
             Modelos = modelos;
+            Pastas = pastas;
         }
 
         public async Task<bool> CommitAsync()

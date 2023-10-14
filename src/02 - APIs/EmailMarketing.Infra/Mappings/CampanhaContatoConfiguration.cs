@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EmailMarketing.Infra.Mappings
 {
-    public class MensagemContatoConfiguration : IEntityTypeConfiguration<MensagemContato>
+    public class CampanhaContatoConfiguration : IEntityTypeConfiguration<CampanhaContato>
     {
-        public void Configure(EntityTypeBuilder<MensagemContato> builder)
+        public void Configure(EntityTypeBuilder<CampanhaContato> builder)
         {
             builder.Ignore(c => c.IdEmpresa);
             builder.Ignore(c => c.CriadoPor);
@@ -25,7 +25,7 @@ namespace EmailMarketing.Infra.Mappings
                 .HasColumnName("codigo")
                 .HasColumnType("varchar(150)");
 
-            builder.Property(c => c.IdMensagem)
+            builder.Property(c => c.IdCampanha)
                 .HasColumnName("id_mensagem")
                 .IsRequired();
 
@@ -40,10 +40,17 @@ namespace EmailMarketing.Infra.Mappings
 
             builder.HasMany(x => x.Acoes)
                 .WithOne()
-                .HasForeignKey(c => c.IdMensagemContato);
+                .HasForeignKey(c => c.IdCampanhaContato);
 
+            builder.HasOne(x => x.Campanha)
+                .WithMany(c => c.Contatos)
+                .HasForeignKey(x => x.IdCampanha);
 
-            builder.ToTable("mensagem_contatos", "marketing");
+            builder.HasOne(x => x.Contato)
+                .WithMany()
+                .HasForeignKey(c => c.IdContato);
+
+            builder.ToTable("campanhas_contatos", "marketing");
         }
     }
 }

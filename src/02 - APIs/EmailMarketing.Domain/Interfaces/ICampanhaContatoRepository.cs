@@ -2,7 +2,7 @@
 
 namespace EmailMarketing.Domain.Interfaces
 {
-    public interface IMensagemRepository : IRepositoryBase<Mensagem>
+    public interface ICampanhaContatoRepository : IRepositoryBase<CampanhaContato>
     {
     }
 }

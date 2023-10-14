@@ -3,9 +3,9 @@ using EmailMarketing.Domain.Enums;
 
 namespace EmailMarketing.Domain.Entities
 {
-    public class MensagemContatoAcao : Entity
+    public class CampanhaContatoAcao : Entity
     {
         public AcaoMensagemEnum Acao { get; set; }
-        public Guid IdMensagemContato { get; set; }
+        public Guid IdCampanhaContato { get; set; }
     }
 }

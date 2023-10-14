@@ -4,9 +4,9 @@ using EmailMarketing.Infra.Context;
 
 namespace EmailMarketing.Infra.Repositorys
 {
-    public class MensagemContatoRepository : RepositoryBase<MensagemContato>, IMensagemContatoRepository
+    public class CampanhaContatoRepository : RepositoryBase<CampanhaContato>, ICampanhaContatoRepository
     {
-        public MensagemContatoRepository(EmailMarketingContext context) : base(context)
+        public CampanhaContatoRepository(EmailMarketingContext context) : base(context)
         {
         }
     }
