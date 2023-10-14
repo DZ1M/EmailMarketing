@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Enums\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.Core\EmailMarketing.Architecture.Core.csproj" />
   </ItemGroup>
 
