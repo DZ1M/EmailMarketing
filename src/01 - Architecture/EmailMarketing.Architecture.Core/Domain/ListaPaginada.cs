@@ -16,7 +16,6 @@
         public int RegistrosPorPagina { get; set; }
         public string ReferenceAction { get; set; }
         public string Query { get; set; }
-        public string RouteParameterId { get; set; }
 
         public void CalcularRegistros()
         {

@@ -35,7 +35,7 @@ namespace EmailMarketing.Application.Usuario.Queries.Authenticar
                 .Include(c => c.Empresas)
                     .ThenInclude(x => x.Empresa)
                 .Where(x => x.Senha == request.Senha.Sha256() &&
-                    EF.Functions.ILike(EF.Functions.Unaccent(x.Email), $"%{request.Email.Replace(" ", "%")}%")
+                    EF.Functions.ILike(EF.Functions.Unaccent(x.Email), EF.Functions.Unaccent(request.Email))
                     )
                 .ToListAsync();
 

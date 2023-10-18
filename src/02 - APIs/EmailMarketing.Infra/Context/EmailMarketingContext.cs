@@ -1,10 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EmailMarketing.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmailMarketing.Infra.Context
 {
     public class EmailMarketingContext : DbContext
     {
         public EmailMarketingContext(DbContextOptions<EmailMarketingContext> options) : base(options) { }
+
+        public DbSet<Pasta> Pastas { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasPostgresExtension("unaccent");
