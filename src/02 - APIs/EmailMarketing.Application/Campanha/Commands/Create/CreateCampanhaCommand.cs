@@ -1,14 +1,15 @@
-﻿using EmailMarketing.Architecture.Core.Messages;
+﻿using EmailMarketing.Application.DTOs;
+using EmailMarketing.Architecture.Core.Messages;
 using EmailMarketing.Domain.Enums;
 using MediatR;
 
-namespace EmailMarketing.Application.Mensagem
+namespace EmailMarketing.Application.Campanha.Commands.Create
 {
-    public class MensagemCommand : Command, IRequest<Unit>
+    public class CreateCampanhaCommand : Command, IRequest<Guid>
     {
-        /// <summary>Nome da campanha</summary>
-        /// <example>Leads</example>
-        public string Nome { get; set; }
+        /// <summary>Nome da Campanha</summary>
+        /// <example>Novidades da Plataforma</example>
+        public string? Nome { get; set; }
         /// <summary>Titulo do Email</summary>
         /// <example>@Nome - veja as novidades de hoje</example>
         public string Titulo { get; set; }

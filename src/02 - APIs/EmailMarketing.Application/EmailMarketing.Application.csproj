@@ -22,7 +22,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Campanha\Commands\Create\" />
 		<Folder Include="Campanha\Commands\Delete\" />
 		<Folder Include="Campanha\Commands\Update\" />
 		<Folder Include="Campanha\Queries\ById\" />
