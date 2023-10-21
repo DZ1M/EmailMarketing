@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using Entity = EmailMarketing.Domain.Entities;
 
-namespace EmailMarketing.Application.Pasta.Queries.ListAll
+namespace EmailMarketing.Application.Modelo.Queries.ListAll
 {
-    public class GetAllPastaQuery : Command, IRequest<ListaPaginada<PastaDto>>
+    public class GetAllModeloQuery : Command, IRequest<ListaPaginada<ModeloDto>>
     {
         [JsonIgnore]
         public int Length { get; set; }
@@ -23,36 +23,36 @@ namespace EmailMarketing.Application.Pasta.Queries.ListAll
         [JsonIgnore]
         public string? SortColumnDirection { get; set; }
     }
-    public class GetAllPastaQueryHandler : IRequestHandler<GetAllPastaQuery, ListaPaginada<PastaDto>>
+    public class GetAllModeloQueryHandler : IRequestHandler<GetAllModeloQuery, ListaPaginada<ModeloDto>>
     {
         private readonly IUnitOfWork _repository;
 
-        public GetAllPastaQueryHandler(IUnitOfWork repository)
+        public GetAllModeloQueryHandler(IUnitOfWork repository)
         {
             _repository = repository;
         }
 
-        public async Task<ListaPaginada<PastaDto>> Handle(GetAllPastaQuery request, CancellationToken cancellationToken)
+        public async Task<ListaPaginada<ModeloDto>> Handle(GetAllModeloQuery request, CancellationToken cancellationToken)
         {
 
             request.Search ??= string.Empty;
 
-            var result = new ListaPaginada<Entity.Pasta>
+            var result = new ListaPaginada<Entity.Modelo>
             {
                 Query = request.Search,
                 RegistrosPorPagina = request.Length,
                 Pagina = request.Start,
-                TotalRegistros = await _repository.Pastas.Query().AsNoTrackingWithIdentityResolution()
+                TotalRegistros = await _repository.Modelos.Query().AsNoTrackingWithIdentityResolution()
                                             .Where(x => EF.Functions.ILike(EF.Functions.Unaccent(x.Nome), $"%{request.Search.Replace(" ", "%")}%"))
                                             .CountAsync(),
-                Lista = _repository.Pastas.Query().AsNoTrackingWithIdentityResolution()
+                Lista = _repository.Modelos.Query().AsNoTrackingWithIdentityResolution()
                                             .Where(x => EF.Functions.ILike(EF.Functions.Unaccent(x.Nome), $"%{request.Search.Replace(" ", "%")}%"))
                                             .FiltrarPaginado(request.Start, request.Length, request.SortColumn, request.SortColumnDirection).ToList()
             };
 
             result.CalcularRegistros();
 
-            return new ListaPaginada<PastaDto>
+            return new ListaPaginada<ModeloDto>
             {
                 NumeroPaginas = result.NumeroPaginas,
                 Pagina = result.Pagina,
@@ -62,7 +62,7 @@ namespace EmailMarketing.Application.Pasta.Queries.ListAll
                 RegistroInicial = result.RegistroInicial,
                 RegistrosPorPagina = result.RegistrosPorPagina,
                 TotalRegistros = result.TotalRegistros,
-                Lista = result.Lista.Select(x => PastaDto.New(x)).ToList()
+                Lista = result.Lista.Select(x => ModeloDto.New(x)).ToList()
             };
         }
     }

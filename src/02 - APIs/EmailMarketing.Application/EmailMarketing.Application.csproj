@@ -32,11 +32,6 @@
 		<Folder Include="Contato\Commands\Update\" />
 		<Folder Include="Contato\Queries\ById\" />
 		<Folder Include="Contato\Queries\ListAll\" />
-		<Folder Include="Modelo\Commands\Create\" />
-		<Folder Include="Modelo\Commands\Delete\" />
-		<Folder Include="Modelo\Commands\Update\" />
-		<Folder Include="Modelo\Queries\ById\" />
-		<Folder Include="Modelo\Queries\ListAll\" />
 	</ItemGroup>
 
 </Project>

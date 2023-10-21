@@ -23,13 +23,16 @@ namespace EmailMarketing.Application.Pasta.Commands.Update
                 ValidationException.ThrowException("Pasta", "Não encontrada!");
             }
 
-            if (await _repository.Pastas.Query()
-                .AnyAsync(where =>
-                            where.Id != request.Id &&
-                            where.IdEmpresa == request.IdEmpresa &&
-                            EF.Functions.Unaccent(where.Nome.ToLower()) == EF.Functions.Unaccent($"{request.Nome.ToLower()}")))
+            if (request.Nome is not null)
             {
-                ValidationException.ThrowException("Pasta", "Já existe uma pasta com este mesmo nome");
+                if (await _repository.Pastas.Query()
+                    .AnyAsync(where =>
+                                where.Id != request.Id &&
+                                where.IdEmpresa == request.IdEmpresa &&
+                                EF.Functions.Unaccent(where.Nome.ToLower()) == EF.Functions.Unaccent($"{request.Nome.ToLower()}")))
+                {
+                    ValidationException.ThrowException("Pasta", "Já existe uma pasta com este mesmo nome");
+                }
             }
 
             obj.Update(request.Nome, request.IdUsuario);
