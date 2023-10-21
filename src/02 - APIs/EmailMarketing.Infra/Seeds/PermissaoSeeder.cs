@@ -9,25 +9,25 @@ namespace EmailMarketing.Infra.Seeds
         {
             builder.HasData(
 
-                new Permissao("Pasta", "Create"),
-                new Permissao("Pasta", "Read"),
-                new Permissao("Pasta", "Update"),
-                new Permissao("Pasta", "Delete"),
+                new Permissao("Pasta", "Create", true),
+                new Permissao("Pasta", "Read", true),
+                new Permissao("Pasta", "Update", true),
+                new Permissao("Pasta", "Delete", true),
 
-                new Permissao("Modelo", "Create"),
-                new Permissao("Modelo", "Read"),
-                new Permissao("Modelo", "Update"),
-                new Permissao("Modelo", "Delete"),
+                new Permissao("Modelo", "Create", true),
+                new Permissao("Modelo", "Read", true),
+                new Permissao("Modelo", "Update", true),
+                new Permissao("Modelo", "Delete", true),
 
-                new Permissao("Contato", "Create"),
-                new Permissao("Contato", "Read"),
-                new Permissao("Contato", "Update"),
-                new Permissao("Contato", "Delete"),
+                new Permissao("Contato", "Create", true),
+                new Permissao("Contato", "Read", true),
+                new Permissao("Contato", "Update", true),
+                new Permissao("Contato", "Delete", true),
 
-                new Permissao("Campanha", "Create"),
-                new Permissao("Campanha", "Read"),
-                new Permissao("Campanha", "Update"),
-                new Permissao("Campanha", "Delete")
+                new Permissao("Campanha", "Create", true),
+                new Permissao("Campanha", "Read", true),
+                new Permissao("Campanha", "Update", true),
+                new Permissao("Campanha", "Delete", true)
                 );
         }
     }

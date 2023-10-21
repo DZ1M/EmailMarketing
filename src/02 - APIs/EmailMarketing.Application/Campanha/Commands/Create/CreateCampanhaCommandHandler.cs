@@ -22,11 +22,11 @@ namespace EmailMarketing.Application.Campanha.Commands.Create
         public async Task<Guid> Handle(CreateCampanhaCommand request, CancellationToken cancellationToken)
         {
             if (await _repository.Campanhas.Query()
-                .AnyAsync(where => 
+                .AnyAsync(where =>
                             where.IdEmpresa == request.IdEmpresa &&
                             EF.Functions.Unaccent(where.Nome.ToLower()) == EF.Functions.Unaccent($"{request.Nome.ToLower()}")))
             {
-                ValidationException.ThrowException("Campanha","Já existe uma pasta com este mesmo nome");
+                ValidationException.ThrowException("Campanha", "Já existe uma pasta com este mesmo nome");
             }
 
             var objToCreate = new Entity.Campanha(
@@ -46,7 +46,7 @@ namespace EmailMarketing.Application.Campanha.Commands.Create
 
             var contatosToDatabase = await _repository.Pastas.Query().AsNoTrackingWithIdentityResolution()
                 .Include(contatos => contatos.ContatoPastas)
-                .Where(where => request.IdPastas.Equals(where.Id) && where.IdEmpresa == request.IdEmpresa)
+                .Where(where => where.IdEmpresa == request.IdEmpresa && request.IdPastas.Contains(where.Id))
                 .SelectMany(pasta => pasta.ContatoPastas.Select(contatoPasta => contatoPasta.ContatoId))
                 .Distinct()
                 .ToListAsync();
@@ -65,22 +65,37 @@ namespace EmailMarketing.Application.Campanha.Commands.Create
                 ValidationException.ThrowException("Pasta", "Houve um erro ao persistir os dados.");
             }
 
-            foreach (var contato in objToCreate.Contatos)
+            await SendMessages(objToCreate.Id).ConfigureAwait(false);
+
+            return objToCreate.Id;
+
+        }
+
+        private async Task SendMessages(Guid id)
+        {
+            var objAfterSave = await _repository.Campanhas.Query()
+                .Include(x => x.Contatos)
+                    .ThenInclude(c => c.Contato)
+                .Include(x => x.Modelo)
+                .AsNoTrackingWithIdentityResolution()
+                .FirstOrDefaultAsync(where => where.Id == id);
+
+            foreach (var contato in objAfterSave.Contatos)
             {
-                var nome = request.Nome.Replace("@nome", contato.Contato.Nome);
-                
+                var nome = objAfterSave.Nome.Replace("@nome", contato.Contato.Nome);
+
                 var command = new MensagemIntegrationEvent
                     (Guid.NewGuid(),
                     nome,
                     contato.Contato.Email,
-                    objToCreate.Modelo.Texto,
+                    objAfterSave.Modelo.Texto,
                     contato.Codigo,
-                    request.IdEmpresa);
-               
+                    objAfterSave.IdEmpresa);
+
                 await _bus.PublishAsync(command);
             }
 
-            return objToCreate.Id;
+            return;
         }
     }
 }

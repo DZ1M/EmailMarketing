@@ -328,22 +328,22 @@ namespace EmailMarketing.Infra.Migrations
                 columns: new[] { "id", "default_role", "nome", "valor" },
                 values: new object[,]
                 {
-                    { new Guid("04c1c55b-91dd-4324-8daf-feaac5dd9b02"), false, "Pasta", "Update" },
-                    { new Guid("0733835e-e551-40a5-8f43-e02f93e9781b"), false, "Contato", "Update" },
-                    { new Guid("07743798-8f8f-413f-b80b-1b7ef556c6fb"), false, "Modelo", "Update" },
-                    { new Guid("0c2e6d73-4221-4436-8198-8cfc54cb3c9f"), false, "Pasta", "Delete" },
-                    { new Guid("1f82f594-b209-4c0d-8fd0-714886e55c71"), false, "Modelo", "Delete" },
-                    { new Guid("33f2559c-050d-404d-a832-fc9e6f101e0d"), false, "Contato", "Create" },
-                    { new Guid("39dd716f-bc97-457f-8184-d91ebda93b89"), false, "Modelo", "Create" },
-                    { new Guid("3ac31129-b587-422b-8d2d-908c9ad8aec4"), false, "Campanha", "Update" },
-                    { new Guid("40d7bcbe-c075-4bb8-b64c-b21996728ac4"), false, "Campanha", "Create" },
-                    { new Guid("433414bf-89be-43a7-bb2e-9503030db2d4"), false, "Pasta", "Read" },
-                    { new Guid("5c924f23-fffd-4b05-a233-886eeeecc10b"), false, "Campanha", "Delete" },
-                    { new Guid("6fb8bba8-9e40-425c-bf01-306bbd9ca5bb"), false, "Contato", "Delete" },
-                    { new Guid("829001da-3f4d-4a87-9bcd-f343de65a889"), false, "Campanha", "Read" },
-                    { new Guid("a3dc6c38-233f-47f3-b367-0bf133554d63"), false, "Contato", "Read" },
-                    { new Guid("ba36b8a8-8012-4f70-8968-c2f1c90e7aef"), false, "Pasta", "Create" },
-                    { new Guid("d4b03b5a-176e-47c1-9a48-cbd5265ea75e"), false, "Modelo", "Read" }
+                    { new Guid("0b9178c6-926f-43c7-b849-0ecd292f30e5"), true, "Campanha", "Read" },
+                    { new Guid("13c7e4b6-6565-4c2a-a851-56b6ccf47e17"), true, "Pasta", "Delete" },
+                    { new Guid("1aa3f85a-11d0-4473-9a74-19c25767973a"), true, "Campanha", "Delete" },
+                    { new Guid("49ffa2e4-64bf-4ca2-a14d-18d96d3eede6"), true, "Modelo", "Create" },
+                    { new Guid("5a550165-04b5-4de8-9203-8e0ebf099c7e"), true, "Pasta", "Update" },
+                    { new Guid("622b1f13-9256-4abb-8e86-b8cb3396b524"), true, "Modelo", "Read" },
+                    { new Guid("68daa0cf-b018-4291-aaf1-da81e7501e82"), true, "Contato", "Delete" },
+                    { new Guid("7438c5ca-28a5-4fef-b315-0f152984c91b"), true, "Contato", "Update" },
+                    { new Guid("7ae7c925-00e8-4abe-bc1c-102e0a87a7d2"), true, "Contato", "Create" },
+                    { new Guid("7dcfd277-66fd-4c48-90d3-6658860edc4e"), true, "Contato", "Read" },
+                    { new Guid("8173638e-4297-44cd-a247-04538ef85f64"), true, "Pasta", "Create" },
+                    { new Guid("b4e4888a-8f52-4119-b5a4-80bf88b37c2c"), true, "Modelo", "Delete" },
+                    { new Guid("de48cddc-8260-4bee-b781-a89a9c157413"), true, "Pasta", "Read" },
+                    { new Guid("e100c931-63d1-4d31-be14-97f3d8d2b2c6"), true, "Campanha", "Create" },
+                    { new Guid("f259fb96-bd94-43af-81d5-7663d7b4b6cb"), true, "Modelo", "Update" },
+                    { new Guid("faae2d77-3123-4079-8518-f927bdeb635b"), true, "Campanha", "Update" }
                 });
 
             migrationBuilder.CreateIndex(
