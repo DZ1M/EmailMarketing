@@ -20,7 +20,7 @@ namespace EmailMarketing.Application.Admin.Auth.Register
         {
             if (await _repository.Usuarios.Query()
                 .AnyAsync(x =>
-                    EF.Functions.ILike(EF.Functions.Unaccent(x.Email), $"%{request.Email.Replace(" ", "%")}%")
+                     EF.Functions.ILike(EF.Functions.Unaccent(x.Email), EF.Functions.Unaccent(request.Email))
                     )
                 )
             {

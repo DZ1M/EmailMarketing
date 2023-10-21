@@ -5,8 +5,11 @@
         IEmpresaRepository Empresas { get; }
         IPermissoesRepository Permissoes { get; }
         IUsuarioRepository Usuarios { get; }
-        IMensagemRepository Mensagens { get; }
         ICampanhaRepository Campanhas { get; }
+        IContatoRepository Contatos { get; }
+        ICampanhaContatoRepository CampanhaContatos { get; }
+        IModeloRepository Modelos { get; }
+        IPastaRepository Pastas { get; }
         Task<bool> CommitAsync();
     }
 }
