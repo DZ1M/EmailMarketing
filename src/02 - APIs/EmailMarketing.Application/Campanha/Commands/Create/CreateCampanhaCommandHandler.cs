@@ -5,6 +5,7 @@ using EmailMarketing.Architecture.MessageBus;
 using EmailMarketing.Domain.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Entity = EmailMarketing.Domain.Entities;
 
 namespace EmailMarketing.Application.Campanha.Commands.Create
@@ -13,10 +14,12 @@ namespace EmailMarketing.Application.Campanha.Commands.Create
     {
         private readonly IUnitOfWork _repository;
         private readonly IMessageBus _bus;
-        public CreateCampanhaCommandHandler(IMessageBus bus, IUnitOfWork repository)
+        private readonly ILogger<CreateCampanhaCommandHandler> _logger;
+        public CreateCampanhaCommandHandler(IMessageBus bus, IUnitOfWork repository, ILogger<CreateCampanhaCommandHandler> logger)
         {
             _bus = bus;
             _repository = repository;
+            _logger = logger;
         }
 
         public async Task<Guid> Handle(CreateCampanhaCommand request, CancellationToken cancellationToken)
@@ -65,35 +68,19 @@ namespace EmailMarketing.Application.Campanha.Commands.Create
                 ValidationException.ThrowException("Pasta", "Houve um erro ao persistir os dados.");
             }
 
-            await SendMessages(objToCreate.Id).ConfigureAwait(false);
+            await BuildMessages(objToCreate.Id, request.IdEmpresa).ConfigureAwait(false);
 
             return objToCreate.Id;
 
         }
 
-        private async Task SendMessages(Guid id)
+        private async Task BuildMessages(Guid id, Guid idEmpresa)
         {
-            var objAfterSave = await _repository.Campanhas.Query()
-                .Include(x => x.Contatos)
-                    .ThenInclude(c => c.Contato)
-                .Include(x => x.Modelo)
-                .AsNoTrackingWithIdentityResolution()
-                .FirstOrDefaultAsync(where => where.Id == id);
+            var sendToIntegration = new BuildMessageIntegrationEvent(id, idEmpresa);
 
-            foreach (var contato in objAfterSave.Contatos)
-            {
-                var nome = objAfterSave.Nome.Replace("@nome", contato.Contato.Nome);
+            await _bus.PublishAsync(sendToIntegration);
 
-                var command = new MensagemIntegrationEvent
-                    (Guid.NewGuid(),
-                    nome,
-                    contato.Contato.Email,
-                    objAfterSave.Modelo.Texto,
-                    contato.Codigo,
-                    objAfterSave.IdEmpresa);
-
-                await _bus.PublishAsync(command);
-            }
+            _logger.LogInformation($"Campanha ID: {id} foi enviado para a montagem.");
 
             return;
         }

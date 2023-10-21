@@ -1,4 +1,5 @@
-﻿using EmailMarketing.Architecture.WebApi.Core.Usuario;
+﻿using EmailMarketing.API.Services;
+using EmailMarketing.Architecture.WebApi.Core.Usuario;
 
 namespace EmailMarketing.API.Configuration
 {
@@ -8,6 +9,8 @@ namespace EmailMarketing.API.Configuration
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IAspNetUser, AspNetUser>();
+
+            services.AddHostedService<BuildMessageIntegrationHandler>();
         }
     }
 }

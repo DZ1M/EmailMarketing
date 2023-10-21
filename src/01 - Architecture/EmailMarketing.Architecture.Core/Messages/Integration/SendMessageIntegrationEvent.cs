@@ -1,8 +1,8 @@
 ﻿namespace EmailMarketing.Architecture.Core.Messages.Integration
 {
-    public class MensagemIntegrationEvent : IntegrationEvent
+    public class SendMessageIntegrationEvent : IntegrationEvent
     {
-        public MensagemIntegrationEvent(Guid id, string nome, string email, string texto, string codigo, Guid idEmpresa)
+        public SendMessageIntegrationEvent(Guid id, string nome, string email, string texto, string codigo, Guid idEmpresa)
         {
             Id = id;
             Nome = nome;
