@@ -352,6 +352,7 @@ namespace EmailMarketing.Infra.Migrations
                         .HasColumnName("id_empresa");
 
                     b.Property<string>("Nome")
+                        .IsRequired()
                         .HasColumnType("varchar(150)")
                         .HasColumnName("nome");
 
@@ -387,6 +388,120 @@ namespace EmailMarketing.Infra.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("permissoes", "auth");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ba36b8a8-8012-4f70-8968-c2f1c90e7aef"),
+                            Default = false,
+                            Nome = "Pasta",
+                            Valor = "Create"
+                        },
+                        new
+                        {
+                            Id = new Guid("433414bf-89be-43a7-bb2e-9503030db2d4"),
+                            Default = false,
+                            Nome = "Pasta",
+                            Valor = "Read"
+                        },
+                        new
+                        {
+                            Id = new Guid("04c1c55b-91dd-4324-8daf-feaac5dd9b02"),
+                            Default = false,
+                            Nome = "Pasta",
+                            Valor = "Update"
+                        },
+                        new
+                        {
+                            Id = new Guid("0c2e6d73-4221-4436-8198-8cfc54cb3c9f"),
+                            Default = false,
+                            Nome = "Pasta",
+                            Valor = "Delete"
+                        },
+                        new
+                        {
+                            Id = new Guid("39dd716f-bc97-457f-8184-d91ebda93b89"),
+                            Default = false,
+                            Nome = "Modelo",
+                            Valor = "Create"
+                        },
+                        new
+                        {
+                            Id = new Guid("d4b03b5a-176e-47c1-9a48-cbd5265ea75e"),
+                            Default = false,
+                            Nome = "Modelo",
+                            Valor = "Read"
+                        },
+                        new
+                        {
+                            Id = new Guid("07743798-8f8f-413f-b80b-1b7ef556c6fb"),
+                            Default = false,
+                            Nome = "Modelo",
+                            Valor = "Update"
+                        },
+                        new
+                        {
+                            Id = new Guid("1f82f594-b209-4c0d-8fd0-714886e55c71"),
+                            Default = false,
+                            Nome = "Modelo",
+                            Valor = "Delete"
+                        },
+                        new
+                        {
+                            Id = new Guid("33f2559c-050d-404d-a832-fc9e6f101e0d"),
+                            Default = false,
+                            Nome = "Contato",
+                            Valor = "Create"
+                        },
+                        new
+                        {
+                            Id = new Guid("a3dc6c38-233f-47f3-b367-0bf133554d63"),
+                            Default = false,
+                            Nome = "Contato",
+                            Valor = "Read"
+                        },
+                        new
+                        {
+                            Id = new Guid("0733835e-e551-40a5-8f43-e02f93e9781b"),
+                            Default = false,
+                            Nome = "Contato",
+                            Valor = "Update"
+                        },
+                        new
+                        {
+                            Id = new Guid("6fb8bba8-9e40-425c-bf01-306bbd9ca5bb"),
+                            Default = false,
+                            Nome = "Contato",
+                            Valor = "Delete"
+                        },
+                        new
+                        {
+                            Id = new Guid("40d7bcbe-c075-4bb8-b64c-b21996728ac4"),
+                            Default = false,
+                            Nome = "Campanha",
+                            Valor = "Create"
+                        },
+                        new
+                        {
+                            Id = new Guid("829001da-3f4d-4a87-9bcd-f343de65a889"),
+                            Default = false,
+                            Nome = "Campanha",
+                            Valor = "Read"
+                        },
+                        new
+                        {
+                            Id = new Guid("3ac31129-b587-422b-8d2d-908c9ad8aec4"),
+                            Default = false,
+                            Nome = "Campanha",
+                            Valor = "Update"
+                        },
+                        new
+                        {
+                            Id = new Guid("5c924f23-fffd-4b05-a233-886eeeecc10b"),
+                            Default = false,
+                            Nome = "Campanha",
+                            Valor = "Delete"
+                        });
                 });
 
             modelBuilder.Entity("EmailMarketing.Domain.Entities.Usuario", b =>

@@ -1,4 +1,5 @@
-﻿using EmailMarketing.Architecture.WebApi.Core.Auth;
+﻿using EmailMarketing.Application.Campanha.Commands.Create;
+using EmailMarketing.Architecture.WebApi.Core.Auth;
 using EmailMarketing.Architecture.WebApi.Core.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ namespace EmailMarketing.API.Controllers.Private
         [ClaimsAuthorize("Campanha", "Create")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Guid))]
-        public async Task<IActionResult> Create([FromBody] dynamic command)
+        public async Task<IActionResult> Create([FromBody] CreateCampanhaCommand command)
         {
             var mediator = await Mediator.Send(command);
 
