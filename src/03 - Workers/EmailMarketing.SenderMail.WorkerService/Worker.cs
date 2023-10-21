@@ -22,7 +22,7 @@ namespace EmailMarketing.SenderMail.WorkerService
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            await _bus.SubscribeAsync<SendMessageIntegrationEvent>("Mensagem", EnviarMensagem);
+            await _bus.SubscribeAsync<SendMessageIntegrationEvent>("SendMessage", EnviarMensagem);
         }
         private async Task EnviarMensagem(SendMessageIntegrationEvent message)
         {
