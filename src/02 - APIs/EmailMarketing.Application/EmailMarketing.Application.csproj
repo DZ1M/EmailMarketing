@@ -27,11 +27,6 @@
 		<Folder Include="Campanha\Commands\Update\" />
 		<Folder Include="Campanha\Queries\ById\" />
 		<Folder Include="Campanha\Queries\ListAll\" />
-		<Folder Include="Contato\Commands\Create\" />
-		<Folder Include="Contato\Commands\Delete\" />
-		<Folder Include="Contato\Commands\Update\" />
-		<Folder Include="Contato\Queries\ById\" />
-		<Folder Include="Contato\Queries\ListAll\" />
 	</ItemGroup>
 
 </Project>

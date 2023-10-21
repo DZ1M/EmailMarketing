@@ -21,7 +21,7 @@ namespace EmailMarketing.API.Controllers.Private
         /// <response code="200">Success: pasta criada</response>
         /// <response code="400">Failure: Requisição invalida</response>
         /// <response code="401">Failure: Sem autorização</response>
-        [ClaimsAuthorize("Campanha", "Create")]
+        [ClaimsAuthorize("Pasta", "Create")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PastaDto))]
         public async Task<IActionResult> Create([FromBody] CreatePastaCommand command)
@@ -41,7 +41,7 @@ namespace EmailMarketing.API.Controllers.Private
         /// <param name="sortColumnDirection"></param>
         /// <response code="400">Failure: Requisição invalida</response>
         /// <response code="401">Failure: Sem autorização</response>
-        [ClaimsAuthorize("Campanha", "Read")]
+        [ClaimsAuthorize("Pasta", "Read")]
         [HttpGet("List")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ListaPaginada<PastaDto>))]
         public async Task<ListaPaginada<PastaDto>> List([FromQuery] int? length, [FromQuery] int? start, [FromQuery] string? search, [FromQuery] string? sortColumn, [FromQuery] string sortColumnDirection = "asc")
@@ -63,7 +63,7 @@ namespace EmailMarketing.API.Controllers.Private
         /// <response code="200">Success: Retorna uma pasta</response>
         /// <response code="400">Failure: Requisição invalida</response>
         /// <response code="401">Failure: Sem autorização</response>
-        [ClaimsAuthorize("Campanha", "Read")]
+        [ClaimsAuthorize("Pasta", "Read")]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PastaDto))]
         public async Task<IActionResult> Get(Guid id)
@@ -80,10 +80,10 @@ namespace EmailMarketing.API.Controllers.Private
         /// <response code="200">Success: Pasta alterada</response>
         /// <response code="400">Failure: Requisição invalida</response>
         /// <response code="401">Failure: Sem autorização</response>
-        [ClaimsAuthorize("Campanha", "Edit")]
+        [ClaimsAuthorize("Pasta", "Update")]
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PastaDto))]
-        public async Task<IActionResult> Edit([FromRoute] Guid id, [FromBody] UpdatePastaCommand command)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdatePastaCommand command)
         {
             command.Id = id;
             var mediator = await Mediator.Send(command);
@@ -97,7 +97,7 @@ namespace EmailMarketing.API.Controllers.Private
         /// <response code="204">Success: Pasta excluida com sucesso</response>
         /// <response code="400">Failure: Requisição invalida</response>
         /// <response code="401">Failure: Sem autorização</response>
-        [ClaimsAuthorize("Campanha", "Delete")]
+        [ClaimsAuthorize("Pasta", "Delete")]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Delete([FromRoute] Guid id)

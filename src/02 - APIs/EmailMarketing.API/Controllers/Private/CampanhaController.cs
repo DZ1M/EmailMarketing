@@ -40,10 +40,10 @@ namespace EmailMarketing.API.Controllers.Private
         /// </summary>
         /// <response code="200">Success: Campanha alterada</response>
         /// <response code="400">Failure: Invalid request</response>
-        [ClaimsAuthorize("Campanha", "Edit")]
+        [ClaimsAuthorize("Campanha", "Update")]
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-        public async Task<IActionResult> Edit([FromRoute] Guid id, [FromBody] dynamic command)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] dynamic command)
         {
             command.Id = id;
             var mediator = await Mediator.Send(command);

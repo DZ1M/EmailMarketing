@@ -21,7 +21,7 @@ namespace EmailMarketing.API.Controllers.Private
         /// <response code="200">Success: Campanha criada</response>
         /// <response code="400">Failure: Requisição invalida</response>
         /// <response code="401">Failure: Sem autorização</response>
-        [ClaimsAuthorize("Campanha", "Create")]
+        [ClaimsAuthorize("Modelo", "Create")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ModeloDto))]
         public async Task<IActionResult> Create([FromBody] CreateModeloCommand command)
@@ -40,7 +40,7 @@ namespace EmailMarketing.API.Controllers.Private
         /// <param name="sortColumnDirection"></param>
         /// <response code="400">Failure: Requisição invalida</response>
         /// <response code="401">Failure: Sem autorização</response>
-        [ClaimsAuthorize("Campanha", "Read")]
+        [ClaimsAuthorize("Modelo", "Read")]
         [HttpGet("List")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ListaPaginada<ModeloDto>))]
         public async Task<ListaPaginada<ModeloDto>> List([FromQuery] int? length, [FromQuery] int? start, [FromQuery] string? search, [FromQuery] string? sortColumn, [FromQuery] string sortColumnDirection = "asc")
@@ -62,7 +62,7 @@ namespace EmailMarketing.API.Controllers.Private
         /// <response code="200">Success: Retorna um modelo</response>
         /// <response code="400">Failure: Requisição invalida</response>
         /// <response code="401">Failure: Sem autorização</response>
-        [ClaimsAuthorize("Campanha", "Read")]
+        [ClaimsAuthorize("Modelo", "Read")]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ModeloDto))]
         public async Task<IActionResult> Get(Guid id)
@@ -79,10 +79,10 @@ namespace EmailMarketing.API.Controllers.Private
         /// <response code="200">Success: Modelo alterado</response>
         /// <response code="400">Failure: Requisição invalida</response>
         /// <response code="401">Failure: Sem autorização</response>
-        [ClaimsAuthorize("Campanha", "Edit")]
+        [ClaimsAuthorize("Modelo", "Update")]
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ModeloDto))]
-        public async Task<IActionResult> Edit([FromRoute] Guid id, [FromBody] UpdateModeloCommand command)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateModeloCommand command)
         {
             command.Id = id;
             var mediator = await Mediator.Send(command);
@@ -96,7 +96,7 @@ namespace EmailMarketing.API.Controllers.Private
         /// <response code="204">Success: Modelo excluido com sucesso</response>
         /// <response code="400">Failure: Requisição invalida</response>
         /// <response code="401">Failure: Sem autorização</response>
-        [ClaimsAuthorize("Campanha", "Delete")]
+        [ClaimsAuthorize("Modelo", "Delete")]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Delete([FromRoute] Guid id)

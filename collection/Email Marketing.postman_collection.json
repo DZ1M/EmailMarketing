@@ -1,0 +1,1658 @@
+{
+	"info": {
+		"_postman_id": "ccc15cfc-0640-4bde-abb1-555a7b72358c",
+		"name": "Email Marketing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29891475"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"tokenApi\", \"\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Retorno OK Login\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									"var result = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Verificar se token foi gerado\", function() {\r",
+									"    pm.expect(result.accessToken).not.undefined;\r",
+									"    pm.expect(result.accessToken).not.null;\r",
+									"    pm.collectionVariables.set(\"tokenApi\", result.accessToken)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{userEmail}}\",\r\n  \"senha\": \"{{userPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/autenticar",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"autenticar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nova Conta",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Retorno OK\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									"var result = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Verificar se token foi gerado\", function() {\r",
+									"    pm.expect(result.accessToken).not.undefined;\r",
+									"    pm.expect(result.accessToken).not.null;\r",
+									"    pm.collectionVariables.set(\"tokenApi\", result.accessToken)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Valdemar Peixoto\",\r\n  \"nomeEmpresa\": \"Fruteira Jorge Bagre\",\r\n  \"email\": \"teste@teste.com\",\r\n  \"senha\": \"123456\",\r\n  \"senhaConfirmacao\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/nova-conta",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"nova-conta"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "01 - Pasta",
+			"item": [
+				{
+					"name": "Criar Pasta",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"pasta criada com sucesso\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									"var result = pm.response.json();\r",
+									"\r",
+									"pm.test(\"definindo id da pasta\", function() {\r",
+									"    console.log(\"obj \" + result);\r",
+									"    pm.collectionVariables.set(\"idPasta\", result.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Contatos Importados 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/pasta",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"pasta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por Id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get da pasta\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									"var result = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Pasta retornada com sucesso\", function() {\r",
+									"    console.log(\"Id: \" + result.id);\r",
+									"    console.log(\"nome: \" + result.nome);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/pasta/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"pasta",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{idPasta}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Pasta",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Update da pasta ok\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									"var result = pm.response.json();\r",
+									"\r",
+									"pm.test(\"pasta atualizada\", function() {\r",
+									"    console.log(\"Pasta atualizada: \"+result);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Contatos Alterado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/pasta/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"pasta",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{idPasta}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Pasta",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/pasta/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"pasta",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{idPasta}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Pastas Paginado",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Buscar todas pastas\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/pasta/list?length=10&sortColumnDirection=asc&start=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"pasta",
+								"list"
+							],
+							"query": [
+								{
+									"key": "length",
+									"value": "10"
+								},
+								{
+									"key": "sortColumnDirection",
+									"value": "asc"
+								},
+								{
+									"key": "search",
+									"value": "uva",
+									"disabled": true
+								},
+								{
+									"key": "sortColumn",
+									"value": "description",
+									"disabled": true
+								},
+								{
+									"key": "start",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "02 - Modelo",
+			"item": [
+				{
+					"name": "Criar Modelo",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"modelo criado com sucesso\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									"var result = pm.response.json();\r",
+									"\r",
+									"pm.test(\"definindo id do modelo\", function() {\r",
+									"    console.log(\"obj \" + result);\r",
+									"    pm.collectionVariables.set(\"idModelo\", result.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Template 01\",\r\n  \"texto\": \"Código HTML\",\r\n  \"tipo\": \"Email\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/modelo",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"modelo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Modelo por Id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get do modelo\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									"var result = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Modelo retornado com sucesso\", function() {\r",
+									"    console.log(\"Id: \" + result.id);\r",
+									"    console.log(\"nome: \" + result.nome);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/modelo/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"modelo",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{idModelo}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Modelo",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Update do modelo ok\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									"var result = pm.response.json();\r",
+									"\r",
+									"pm.test(\"modelo atualizado\", function() {\r",
+									"    console.log(\"modelo atualizado: \"+result);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Template 01\",\r\n  \"texto\": \"Código HTML\",\r\n  \"tipo\": \"Email\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/modelo/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"modelo",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{idModelo}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Modelo",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/modelo/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"modelo",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{idPasta}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Modelos Paginado",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Buscar todos modelos paginado\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/modelo/list?length=10&sortColumnDirection=asc&start=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"modelo",
+								"list"
+							],
+							"query": [
+								{
+									"key": "length",
+									"value": "10"
+								},
+								{
+									"key": "sortColumnDirection",
+									"value": "asc"
+								},
+								{
+									"key": "search",
+									"value": "uva",
+									"disabled": true
+								},
+								{
+									"key": "sortColumn",
+									"value": "description",
+									"disabled": true
+								},
+								{
+									"key": "start",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "03 - Contato",
+			"item": [
+				{
+					"name": "Criar Contato",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"contato criado com sucesso\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									"var result = pm.response.json();\r",
+									"\r",
+									"pm.test(\"definindo id do contato\", function() {\r",
+									"    console.log(\"obj \" + result);\r",
+									"    pm.collectionVariables.set(\"idContato\", result.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"João Teimoso\",\r\n  \"email\": \"teste@exemplo.com\",\r\n  \"telefone\": \"5535353535\",\r\n  \"idPasta\": {{idPasta}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/contato",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"contato"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Contato por Id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get do contato\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									"var result = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Contato retornado com sucesso\", function() {\r",
+									"    console.log(\"Id: \" + result.id);\r",
+									"    console.log(\"nome: \" + result.nome);\r",
+									"    console.log(\"email: \" + result.email);\r",
+									"    console.log(\"telefone: \" + result.telefone);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/contato/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"contato",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{idContato}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Contato",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Update do contato ok\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									"var result = pm.response.json();\r",
+									"\r",
+									"pm.test(\"contato atualizado\", function() {\r",
+									"    console.log(\"contato atualizado: \"+result);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"João Teimoso\",\r\n  \"email\": \"teste@exemplo.com\",\r\n  \"telefone\": \"5535353535\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/contato/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"contato",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{idContato}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Contato",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/contato/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"contato",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{idContato}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Contato Paginado",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Buscar todos contatos paginado\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/contato/list?length=10&sortColumnDirection=asc&start=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"contato",
+								"list"
+							],
+							"query": [
+								{
+									"key": "length",
+									"value": "10"
+								},
+								{
+									"key": "sortColumnDirection",
+									"value": "asc"
+								},
+								{
+									"key": "search",
+									"value": "uva",
+									"disabled": true
+								},
+								{
+									"key": "sortColumn",
+									"value": "description",
+									"disabled": true
+								},
+								{
+									"key": "start",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "04 - Campanhas",
+			"item": [
+				{
+					"name": "Criar Campanha",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"campanha criada com sucesso\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									"var result = pm.response.json();\r",
+									"\r",
+									"pm.test(\"definindo id da campanha\", function() {\r",
+									"    console.log(\"obj \" + result);\r",
+									"    pm.collectionVariables.set(\"idCampanha\", result.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"João Teimoso\",\r\n  \"email\": \"teste@exemplo.com\",\r\n  \"telefone\": \"5535353535\",\r\n  \"idPasta\": {{idPasta}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/campanha",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campanha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Campanha por Id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get da Campanha\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									"var result = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Campanha retornada com sucesso\", function() {\r",
+									"    console.log(\"Id: \" + result.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/campanha/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campanha",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{idCampanha}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Campanha",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Update da campanha ok\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									"var result = pm.response.json();\r",
+									"\r",
+									"pm.test(\"campanha atualizada\", function() {\r",
+									"    console.log(\"campanha atualizada: \"+result);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"João Teimoso\",\r\n  \"email\": \"teste@exemplo.com\",\r\n  \"telefone\": \"5535353535\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/campanha/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campanha",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{idCampanha}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Campanha",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/campanha/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campanha",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{idCampanha}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Campanha Paginado",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Buscar todos campanhas paginado\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.json;\r",
+									"    pm.response.to.be.withBody;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenApi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/campanha/list?length=10&sortColumnDirection=asc&start=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"campanha",
+								"list"
+							],
+							"query": [
+								{
+									"key": "length",
+									"value": "10"
+								},
+								{
+									"key": "sortColumnDirection",
+									"value": "asc"
+								},
+								{
+									"key": "search",
+									"value": "uva",
+									"disabled": true
+								},
+								{
+									"key": "sortColumn",
+									"value": "description",
+									"disabled": true
+								},
+								{
+									"key": "start",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "tokenApi",
+			"value": "valor_token",
+			"type": "default"
+		},
+		{
+			"key": "userEmail",
+			"value": "teste@teste.com",
+			"type": "default"
+		},
+		{
+			"key": "userPassword",
+			"value": "123456",
+			"type": "default"
+		},
+		{
+			"key": "url",
+			"value": "https://localhost:7138",
+			"type": "string"
+		}
+	]
+}
