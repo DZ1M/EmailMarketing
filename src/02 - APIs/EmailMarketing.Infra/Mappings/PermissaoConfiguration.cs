@@ -35,6 +35,9 @@ namespace EmailMarketing.Infra.Mappings
                 .IsRequired();
 
             builder.ToTable("permissoes", "auth");
+
+
+            Seeds.PermissaoSeeder.Seed(builder);
         }
     }
 }

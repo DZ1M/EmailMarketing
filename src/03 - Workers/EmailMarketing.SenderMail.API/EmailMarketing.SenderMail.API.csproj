@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>f753e243-5b98-424f-97cf-a025507375da</UserSecretsId>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+	  <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.9" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.9" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.9" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.9">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
+		<PackageReference Include="Serilog.Sinks.Seq" Version="5.2.2" />
+		<PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+    <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.WebApi.Core\EmailMarketing.Architecture.WebApi.Core.csproj" />
+    <ProjectReference Include="..\EmailMarketing.SenderMail.Application\EmailMarketing.SenderMail.Application.csproj" />
+    <ProjectReference Include="..\EmailMarketing.SenderMail.Infra\EmailMarketing.SenderMail.Infra.csproj" />
+  </ItemGroup>
+
+</Project>

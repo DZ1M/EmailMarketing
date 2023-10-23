@@ -8,7 +8,6 @@
 
 	<ItemGroup>
 		<Folder Include="Migrations\" />
-		<Folder Include="Seeds\" />
 	</ItemGroup>
 
 
@@ -25,6 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.Helpers\EmailMarketing.Architecture.Helpers.csproj" />
 	  <ProjectReference Include="..\EmailMarketing.Domain\EmailMarketing.Domain.csproj" />
 	</ItemGroup>
 

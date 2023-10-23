@@ -22,21 +22,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Campanha\Commands\Create\" />
 		<Folder Include="Campanha\Commands\Delete\" />
 		<Folder Include="Campanha\Commands\Update\" />
 		<Folder Include="Campanha\Queries\ById\" />
 		<Folder Include="Campanha\Queries\ListAll\" />
-		<Folder Include="Contato\Commands\Create\" />
-		<Folder Include="Contato\Commands\Delete\" />
-		<Folder Include="Contato\Commands\Update\" />
-		<Folder Include="Contato\Queries\ById\" />
-		<Folder Include="Contato\Queries\ListAll\" />
-		<Folder Include="Modelo\Commands\Create\" />
-		<Folder Include="Modelo\Commands\Delete\" />
-		<Folder Include="Modelo\Commands\Update\" />
-		<Folder Include="Modelo\Queries\ById\" />
-		<Folder Include="Modelo\Queries\ListAll\" />
 	</ItemGroup>
 
 </Project>

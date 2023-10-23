@@ -1,7 +1,6 @@
 ﻿using EmailMarketing.Domain.Interfaces;
 using EmailMarketing.Infra.Context;
 using Microsoft.EntityFrameworkCore;
-using System.Data.Common;
 
 namespace EmailMarketing.Infra.Repositorys
 {

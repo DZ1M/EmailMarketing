@@ -1,4 +1,5 @@
-﻿using EmailMarketing.Architecture.WebApi.Core.Auth;
+﻿using EmailMarketing.Application.Campanha.Commands.Create;
+using EmailMarketing.Architecture.WebApi.Core.Auth;
 using EmailMarketing.Architecture.WebApi.Core.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ namespace EmailMarketing.API.Controllers.Private
         [ClaimsAuthorize("Campanha", "Create")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Guid))]
-        public async Task<IActionResult> Create([FromBody] dynamic command)
+        public async Task<IActionResult> Create([FromBody] CreateCampanhaCommand command)
         {
             var mediator = await Mediator.Send(command);
 
@@ -40,10 +41,10 @@ namespace EmailMarketing.API.Controllers.Private
         /// </summary>
         /// <response code="200">Success: Campanha alterada</response>
         /// <response code="400">Failure: Invalid request</response>
-        [ClaimsAuthorize("Campanha", "Edit")]
+        [ClaimsAuthorize("Campanha", "Update")]
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-        public async Task<IActionResult> Edit([FromRoute] Guid id, [FromBody] dynamic command)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] dynamic command)
         {
             command.Id = id;
             var mediator = await Mediator.Send(command);
