@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "emailmarketing.api": "StartDebugging",
+        "emailmarketing.sendermail.workerservice": "StartDebugging",
+        "emailmarketing.sendermail.api": "StartDebugging"
+      }
+    }
+  }
+}

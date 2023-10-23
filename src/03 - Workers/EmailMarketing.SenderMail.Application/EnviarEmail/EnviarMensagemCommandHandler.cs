@@ -1,4 +1,5 @@
 ﻿using EmailMarketing.Architecture.Helpers;
+using EmailMarketing.Architecture.WebApi.Core.Logs.Contracts;
 using EmailMarketing.SenderMail.Domain.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -13,8 +14,8 @@ namespace EmailMarketing.SenderMail.Application.EnviarEmail
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IConfiguration _configuration;
-        private readonly ILogger<EnviarMensagemCommandHandler> _logger;
-        public EnviarMensagemCommandHandler(IUnitOfWork unitOfWork, ILogger<EnviarMensagemCommandHandler> logger, IConfiguration configuration) : base(configuration)
+        private readonly IAppLogger _logger;
+        public EnviarMensagemCommandHandler(IUnitOfWork unitOfWork, IAppLogger logger, IConfiguration configuration) : base(configuration)
         {
             _unitOfWork = unitOfWork;
             _configuration = configuration;

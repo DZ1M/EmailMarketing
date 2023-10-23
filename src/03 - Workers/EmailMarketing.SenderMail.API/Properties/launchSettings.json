@@ -6,7 +6,11 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ENCRYPT_EMAIL": "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x"
+        "ENCRYPT_EMAIL": "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x",
+        "ELASTIC_USERNAME": "admin",
+        "ELASTIC_PASSWORD": "123456",
+        "ELASTIC_URI": "elasticsearch:9200",
+        "ELASTIC_INDEX": "test"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5136"
@@ -17,7 +21,11 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ENCRYPT_EMAIL": "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x"
+        "ENCRYPT_EMAIL": "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x",
+        "ELASTIC_USERNAME": "admin",
+        "ELASTIC_PASSWORD": "123456",
+        "ELASTIC_URI": "elasticsearch:9200",
+        "ELASTIC_INDEX": "test"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7183;http://localhost:5136"
@@ -28,7 +36,11 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ENCRYPT_EMAIL": "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x"
+        "ENCRYPT_EMAIL": "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x",
+        "ELASTIC_USERNAME": "admin",
+        "ELASTIC_PASSWORD": "123456",
+        "ELASTIC_URI": "elasticsearch:9200",
+        "ELASTIC_INDEX": "test"
       }
     },
     "Docker": {
@@ -36,8 +48,13 @@
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
       "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_URLS": "https://+:443;http://+:80",
-        "ENCRYPT_EMAIL": "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x"
+        "ENCRYPT_EMAIL": "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x",
+        "ELASTIC_USERNAME": "admin",
+        "ELASTIC_PASSWORD": "123456",
+        "ELASTIC_URI": "elasticsearch:9200",
+        "ELASTIC_INDEX": "test"
       },
       "publishAllPorts": true,
       "useSSL": true

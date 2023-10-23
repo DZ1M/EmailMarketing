@@ -5,17 +5,29 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ELASTIC_USERNAME": "admin",
+        "ELASTIC_PASSWORD": "123456",
+        "ELASTIC_URI": "elasticsearch:9200",
+        "ELASTIC_INDEX": "test"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5192"
+      "applicationUrl": "http://localhost:5192",
+      "ELASTIC_USERNAME": "admin",
+      "ELASTIC_PASSWORD": "123456",
+      "ELASTIC_URI": "elasticsearch:9200",
+      "ELASTIC_INDEX": "test"
     },
     "https": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ELASTIC_USERNAME": "admin",
+        "ELASTIC_PASSWORD": "123456",
+        "ELASTIC_URI": "elasticsearch:9200",
+        "ELASTIC_INDEX": "test"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7138;http://localhost:5192"
@@ -34,7 +46,11 @@
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
       "environmentVariables": {
         "ASPNETCORE_URLS": "https://+:443;http://+:80",
-        "ASPNETCORE_ENVIRONMENT": "Docker"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ELASTIC_USERNAME": "admin",
+        "ELASTIC_PASSWORD": "123456",
+        "ELASTIC_URI": "elasticsearch:9200",
+        "ELASTIC_INDEX": "test"
       },
       "publishAllPorts": true,
       "useSSL": true
