@@ -1,0 +1,60 @@
+version: '3.4'
+
+services:
+  emailmarketing.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "20001:80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - emailmarketing-network
+  emailmarketing.sendermail.workerservice:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+    networks:
+      - emailmarketing-network
+
+  emailmarketing-rabbit:
+    image: rabbitmq:3-management
+    container_name: emailmarketing-rabbit
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: "emailmarketing"
+      RABBITMQ_DEFAULT_PASS: "emailmarketing"
+    networks:
+      - emailmarketing-network
+
+  emailmarketing.sendermail.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "20002:80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - emailmarketing-network
+
+  database-emailmarketing:
+    image: postgres
+    container_name: emailmarketing-database
+    ports:
+      - "5435:5432"
+    environment:
+      POSTGRES_PASSWORD: "123456"
+    networks:
+      - emailmarketing-network
+networks:
+  emailmarketing-network:
+    driver: bridge

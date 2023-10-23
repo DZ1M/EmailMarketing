@@ -1,0 +1,95 @@
+version: '3.4'
+
+services:
+  emailmarketing.api:
+    image: ${DOCKER_REGISTRY-}emailmarketingapi
+    build:
+      context: .
+      dockerfile: 02 - APIs/EmailMarketing.API/Dockerfile
+    ports:
+      - "20001:80"
+    networks:
+      - emailmarketing-network
+
+  emailmarketing.sendermail.api:
+    image: ${DOCKER_REGISTRY-}emailmarketingsendermailapi
+    build:
+      context: .
+      dockerfile: 03 - Workers/EmailMarketing.SenderMail.API/Dockerfile
+    environment:
+     ENCRYPT_EMAIL: "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x"
+    ports:
+      - "20002:80"
+    networks:
+      - emailmarketing-network
+
+  emailmarketing.sendermail.workerservice:
+    image: ${DOCKER_REGISTRY-}emailmarketingsendermailworkerservice
+    build:
+      context: .
+      dockerfile: 03 - Workers/EmailMarketing.SenderMail.WorkerService/Dockerfile
+    environment:
+     ENCRYPT_EMAIL: "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x"
+    networks:
+      - emailmarketing-network
+
+  emailmarketing-rabbit:
+    image: rabbitmq:3-management
+    container_name: emailmarketing-rabbit
+    ports:
+      - "5672"
+      - "15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: "emailmarketing"
+      RABBITMQ_DEFAULT_PASS: "emailmarketing"
+    networks:
+      - emailmarketing-network
+
+  database-emailmarketing:
+    image: postgres
+    container_name: emailmarketing-database
+    ports:
+      - "5435:5432"
+    environment:
+      POSTGRES_PASSWORD: "123456"
+    networks:
+      - emailmarketing-network
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xmx256m -Xms256m"
+      - "xpack.security.enabled=true"
+      - "ELASTIC_PASSWORD=pass@123"
+    networks:
+      - emailmarketing-network
+    ports:
+      - 9200:9200
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.10.0
+    environment:
+      - "ELASTICSEARCH_URL=http://elasticsearch:9200"
+      - "ELASTICSEARCH_USERNAME=elastic"  
+      - "ELASTICSEARCH_PASSWORD=pass@123"  
+    networks:
+      - emailmarketing-network
+    ports:
+      - 5601:5601
+
+volumes:
+  elasticsearch-data:
+
+
+networks:
+  emailmarketing-network:
+    driver: bridge
+    external: true
+  

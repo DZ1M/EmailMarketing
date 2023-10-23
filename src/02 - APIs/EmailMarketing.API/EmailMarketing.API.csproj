@@ -8,8 +8,9 @@
 		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 		<NoWarn>$(NoWarn);1591</NoWarn>
 		<UserSecretsId>f1139df8-a376-4baf-8f6c-08848a827f98</UserSecretsId>
-		<DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<DockerfileContext>..\..</DockerfileContext>
+		<DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
 	</PropertyGroup>
 
 	<ItemGroup>
