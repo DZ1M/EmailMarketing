@@ -8,6 +8,8 @@ services:
       dockerfile: 02 - APIs/EmailMarketing.API/Dockerfile
     ports:
       - "20001:80"
+    depends_on:
+      - emailmarketing-rabbit  
     networks:
       - emailmarketing-network
 
@@ -20,6 +22,8 @@ services:
      ENCRYPT_EMAIL: "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x"
     ports:
       - "20002:80"
+    depends_on:
+      - emailmarketing-rabbit  
     networks:
       - emailmarketing-network
 
@@ -30,6 +34,8 @@ services:
       dockerfile: 03 - Workers/EmailMarketing.SenderMail.WorkerService/Dockerfile
     environment:
      ENCRYPT_EMAIL: "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x"
+    depends_on:
+      - emailmarketing-rabbit  
     networks:
       - emailmarketing-network
 
