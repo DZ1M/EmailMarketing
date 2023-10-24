@@ -6,7 +6,11 @@
       "serviceActions": {
         "emailmarketing.api": "StartDebugging",
         "emailmarketing.sendermail.workerservice": "StartDebugging",
-        "emailmarketing.sendermail.api": "StartDebugging"
+        "emailmarketing.sendermail.api": "StartDebugging",
+        "database-emailmarketing": "StartWithoutDebugging",
+        "elasticsearch": "StartWithoutDebugging",
+        "emailmarketing-rabbit": "StartWithoutDebugging",
+        "kibana": "StartWithoutDebugging"
       }
     }
   }
