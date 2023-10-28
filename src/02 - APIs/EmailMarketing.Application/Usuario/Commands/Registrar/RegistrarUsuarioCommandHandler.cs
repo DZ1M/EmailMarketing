@@ -19,8 +19,7 @@ namespace EmailMarketing.Application.Admin.Auth.Register
         public async Task<Unit> Handle(RegistrarUsuarioCommand request, CancellationToken cancellationToken)
         {
             if (await _repository.Usuarios.Query()
-                .AnyAsync(x =>
-                     EF.Functions.ILike(EF.Functions.Unaccent(x.Email), EF.Functions.Unaccent(request.Email))
+                .AnyAsync(x => x.Email == request.Email
                     )
                 )
             {

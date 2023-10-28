@@ -31,8 +31,7 @@ namespace EmailMarketing.Application.Usuario.Queries.BuscarPorEmail
                 .Include(x => x.Permissoes)
                     .ThenInclude(c => c.Permissao)
                 .AsNoTracking()
-                .FirstOrDefaultAsync(x =>
-                         EF.Functions.ILike(EF.Functions.Unaccent(x.Email), EF.Functions.Unaccent(request.Email))
+                .FirstOrDefaultAsync(x => x.Email == request.Email
                     );
 
             if (usuario is null)
