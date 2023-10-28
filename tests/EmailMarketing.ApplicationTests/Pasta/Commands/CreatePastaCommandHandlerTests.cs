@@ -8,23 +8,17 @@ namespace EmailMarketing.ApplicationTests.Pasta.Commands
 {
     public class CreatePastaCommandHandlerTests : IDisposable
     {
-        private DbContextOptions<EmailMarketingContext> _options;
-        private EmailMarketingContext _context;
+        private readonly TestDbContextConfiguration _dbConfig;
 
         public CreatePastaCommandHandlerTests()
         {
-            _options = new DbContextOptionsBuilder<EmailMarketingContext>()
-                .UseNpgsql("User ID=postgres;Password=123456;Host=localhost;Port=5436;Database=test_emailmarketing_db;MaxPoolSize=200;")
-                .Options;
-
-            _context = new TestDbContext(_options);
-            _context.Database.EnsureCreated();
+            _dbConfig = new TestDbContextConfiguration();
         }
 
         [Fact]
         public async Task CreateTest()
         {
-            var unitOfWork = new TestUnitOfWork(_context);
+            var unitOfWork = new TestUnitOfWork(_dbConfig.Context);
             // Arrange
             var command = new CreatePastaCommand
             {
@@ -42,8 +36,7 @@ namespace EmailMarketing.ApplicationTests.Pasta.Commands
 
         public void Dispose()
         {
-            _context.Database.EnsureDeleted();
-            _context.Dispose();
+            _dbConfig.Dispose();
         }
     }
 }
