@@ -15,14 +15,16 @@ namespace EmailMarketing.ApplicationTests.Pasta.Commands
             _dbConfig = new TestDbContextConfiguration();
         }
 
-        [Fact]
-        public async Task CreateTest()
+        [Theory]
+        [InlineData("joao")]
+        [InlineData("carapato")]
+        public async Task CreateTest(string nome)
         {
             var unitOfWork = new TestUnitOfWork(_dbConfig.Context);
             // Arrange
             var command = new CreatePastaCommand
             {
-                Nome = "Romildo",
+                Nome = nome,
             };
 
             var handler = new CreatePastaCommandHandler(unitOfWork);

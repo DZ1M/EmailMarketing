@@ -22,12 +22,15 @@ namespace EmailMarketing.ApplicationTests.Context
 
             var configuration = builder.Build();
 
+            var connectionString = configuration.GetConnectionString("TestDatabaseConnection");
+
             _options = new DbContextOptionsBuilder<EmailMarketingContext>()
-                .UseNpgsql(configuration.GetConnectionString("TestDatabaseConnection"))
+                .UseNpgsql(connectionString.Replace("test_emailmarketing_db", Guid.NewGuid().ToString()))
                 .Options;
 
             Context = new TestDbContext(_options);
             Context.Database.EnsureCreated();
+            Context.Database.Migrate();
         }
         public EmailMarketingContext Context { get; }
 
