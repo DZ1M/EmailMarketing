@@ -37,6 +37,7 @@ namespace EmailMarketing.ApplicationTests.Pasta.Commands
         }
 
         public void Dispose()
+        
         {
             _dbConfig.Dispose();
         }

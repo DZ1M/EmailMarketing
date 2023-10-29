@@ -29,7 +29,7 @@ namespace EmailMarketing.ApplicationTests.Context
                 .Options;
 
             Context = new TestDbContext(_options);
-            Context.Database.EnsureCreated();
+            //Context.Database.EnsureCreated();
             Context.Database.Migrate();
         }
         public EmailMarketingContext Context { get; }
