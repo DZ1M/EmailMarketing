@@ -1,11 +1,11 @@
 ﻿using EmailMarketing.Domain.Enums;
 using FluentAssertions;
+using System.Runtime.Serialization;
 
 namespace EmailMarketing.Domain.UnitTests.Enums
 {
     public class TipoMensagemEnumTest
     {
-
         [Fact(DisplayName = nameof(WhatsAppStringToNumber))]
         [Trait("Domain", "TipoMensagemEnum - Aggregates")]
         public void WhatsAppStringToNumber()
@@ -24,6 +24,18 @@ namespace EmailMarketing.Domain.UnitTests.Enums
             obj.ToString().Should().Be("WhatsApp");
         }
 
+        [Fact(DisplayName = nameof(EnumDeveTerValorWhatsApp))]
+        [Trait("Domain", "TipoMensagemEnum - Aggregates")]
+        public void EnumDeveTerValorWhatsApp()
+        {
+            var valorEnum = TipoMensagemEnum.WhatsApp;
+
+            var membro = typeof(TipoMensagemEnum).GetField(valorEnum.ToString());
+            var atributo = membro.GetCustomAttributes(typeof(EnumMemberAttribute), false);
+
+            atributo.Should().HaveCount(1);
+            atributo.Should().ContainSingle().Which.As<EnumMemberAttribute>().Value.Should().Be("WhatsApp");
+        }
 
         [Fact(DisplayName = nameof(EmailStringToNumber))]
         [Trait("Domain", "TipoMensagemEnum - Aggregates")]
@@ -43,6 +55,18 @@ namespace EmailMarketing.Domain.UnitTests.Enums
             obj.ToString().Should().Be("Email");
         }
 
+        [Fact(DisplayName = nameof(EnumDeveTerValorEmail))]
+        [Trait("Domain", "TipoMensagemEnum - Aggregates")]
+        public void EnumDeveTerValorEmail()
+        {
+            var valorEnum = TipoMensagemEnum.Email;
+
+            var membro = typeof(TipoMensagemEnum).GetField(valorEnum.ToString());
+            var atributo = membro.GetCustomAttributes(typeof(EnumMemberAttribute), false);
+
+            atributo.Should().HaveCount(1);
+            atributo.Should().ContainSingle().Which.As<EnumMemberAttribute>().Value.Should().Be("Email");
+        }
 
         [Fact(DisplayName = nameof(SMSStringToNumber))]
         [Trait("Domain", "TipoMensagemEnum - Aggregates")]
@@ -62,5 +86,17 @@ namespace EmailMarketing.Domain.UnitTests.Enums
             obj.ToString().Should().Be("SMS");
         }
 
+        [Fact(DisplayName = nameof(EnumDeveTerValorSMS))]
+        [Trait("Domain", "TipoMensagemEnum - Aggregates")]
+        public void EnumDeveTerValorSMS()
+        {
+            var valorEnum = TipoMensagemEnum.SMS;
+
+            var membro = typeof(TipoMensagemEnum).GetField(valorEnum.ToString());
+            var atributo = membro.GetCustomAttributes(typeof(EnumMemberAttribute), false);
+
+            atributo.Should().HaveCount(1);
+            atributo.Should().ContainSingle().Which.As<EnumMemberAttribute>().Value.Should().Be("SMS");
+        }
     }
 }
