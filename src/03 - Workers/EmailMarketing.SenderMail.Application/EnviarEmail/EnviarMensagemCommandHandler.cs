@@ -4,7 +4,6 @@ using EmailMarketing.SenderMail.Domain.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Net.Mail;
 
@@ -24,8 +23,6 @@ namespace EmailMarketing.SenderMail.Application.EnviarEmail
 
         public async Task<bool> Handle(EnviarMensagemCommand request, CancellationToken cancellationToken)
         {
-            var imagemRastreio = GerarImagemDeRastreio(request.Codigo);
-
             var controle = await _unitOfWork.ControleEmails.Query()
                 .OrderBy(c => c.Data)
                 .ThenBy(x => x.EnviadosHoje)
@@ -50,7 +47,7 @@ namespace EmailMarketing.SenderMail.Application.EnviarEmail
 
             message.To.Add(new MailAddress(request.Email, request.Nome));
             message.Subject = request.Nome;
-            message.Body = $"{request.Texto}{imagemRastreio}";
+            message.Body = $"{request.Texto}{GerarImagemDeRastreio(request.Codigo)}";
             message.IsBodyHtml = true;
             message.Priority = MailPriority.High;
 
