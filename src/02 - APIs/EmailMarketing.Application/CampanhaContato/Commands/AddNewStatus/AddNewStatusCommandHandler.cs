@@ -20,7 +20,7 @@ namespace EmailMarketing.Application.CampanhaContato.Commands.AddNewStatus
             var objToInsert = await _repository.CampanhaContatos
                 .Query()
                 .Include(acao => acao.Acoes)
-                .FirstOrDefaultAsync(where => where.Codigo == Path.GetFileNameWithoutExtension(request.Code));
+                .FirstOrDefaultAsync(where => where.Codigo == request.Code);
 
             if (objToInsert is null)
             {

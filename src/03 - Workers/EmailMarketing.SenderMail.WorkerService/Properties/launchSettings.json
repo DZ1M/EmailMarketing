@@ -9,7 +9,7 @@
         "ELASTIC_PASSWORD": "123456",
         "ELASTIC_URI": "elasticsearch:9200",
         "ELASTIC_INDEX": "test",
-        "URL_API": "https://localhost:5432/api/mensagem/lida?="
+        "URL_API": "https://localhost:5432/api/mensagem/lida/"
       },
       "dotnetRunMessages": true
     },
@@ -23,7 +23,7 @@
         "ELASTIC_PASSWORD": "123456",
         "ELASTIC_URI": "elasticsearch:9200",
         "ELASTIC_INDEX": "test",
-        "URL_API": "https://localhost:5432/mensagem/lida?="
+        "URL_API": "https://localhost:5432/mensagem/lida/"
       }
     }
   }

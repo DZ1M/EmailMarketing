@@ -11,7 +11,7 @@ namespace EmailMarketing.SenderMail.Application.EnviarEmail
         }
         public string GerarImagemDeRastreio(string codigo)
         {
-            var imagemRastreio = $"<img border=0 width=1 alt='' height=1 src='{_config["URL_API"]}/{codigo}' style='display: none; width: 1px; height: 1px' />";
+            var imagemRastreio = $"<img border=0 width=1 alt='' height=1 src='{_config["URL_API"]}/{codigo}.png' style='display: none; width: 1px; height: 1px' />";
 
             return imagemRastreio;
         }

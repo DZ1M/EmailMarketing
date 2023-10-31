@@ -20,7 +20,7 @@ namespace EmailMarketing.API.Controllers.Public
         {
             var command = new AddNewStatusCommand
             {
-                Code = code,
+                Code = Path.GetFileNameWithoutExtension(code),
                 Acao = Domain.Enums.AcaoMensagemEnum.Lida
             };
             await _sender.Send(command);
