@@ -21,11 +21,11 @@ namespace EmailMarketing.Domain.Entities
 
             Acoes.Add(new CampanhaContatoAcao(Id, acao));
         }
-        public Guid IdCampanha { get; set; }
-        public Campanha Campanha { get; set; }
-        public Guid IdContato { get; set; }
-        public Contato Contato { get; set; }
-        public string Codigo { get; set; }
-        public ICollection<CampanhaContatoAcao> Acoes { get; set; }
+        public Guid IdCampanha { get; private set; }
+        public Campanha Campanha { get; private set; }
+        public Guid IdContato { get; private set; }
+        public Contato Contato { get; private set; }
+        public string Codigo { get; private set; }
+        public ICollection<CampanhaContatoAcao> Acoes { get; private set; }
     }
 }

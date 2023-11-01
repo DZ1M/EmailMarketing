@@ -7,9 +7,9 @@
         {
             PastaId = idPasta;
         }
-        public Guid CampanhaId { get; set; }
-        public Campanha Campanha { get; set; }
-        public Guid PastaId { get; set; }
-        public Pasta Pasta { get; set; }
+        public Guid CampanhaId { get; private set; }
+        public Campanha Campanha { get; private set; }
+        public Guid PastaId { get; private set; }
+        public Pasta Pasta { get; private set; }
     }
 }
