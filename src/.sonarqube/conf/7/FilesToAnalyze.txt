@@ -1,0 +1,9 @@
+﻿C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Infra\Context\EmailMarketingContext.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Infra\DependencyInjection.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Infra\Mappings\ControleEmailConfiguration.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Infra\Migrations\20231009020828_initial.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Infra\Migrations\20231009020828_initial.Designer.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Infra\Migrations\EmailMarketingContextModelSnapshot.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Infra\Repositorys\ControleEmailRepository.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Infra\Repositorys\RepositoryBase.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Infra\UnitOfWork.cs

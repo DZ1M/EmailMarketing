@@ -1,0 +1,9 @@
+﻿C:\Git\EmailMarketing\tests\EmailMarketing.SenderMail.UnitTests\Domain\Entities\ControleEmailTest.cs
+C:\Git\EmailMarketing\tests\EmailMarketing.SenderMail.UnitTests\Domain\Entities\ControleEmailTestFixture.cs
+C:\Git\EmailMarketing\tests\EmailMarketing.SenderMail.UnitTests\GlobalUsings.cs
+C:\Users\Vericoders\.nuget\packages\microsoft.net.test.sdk\17.7.1\build\netcoreapp3.1\Microsoft.NET.Test.Sdk.Program.cs
+C:\Users\Vericoders\.nuget\packages\microsoft.testplatform.testhost\17.7.1\build\netcoreapp3.1\x64\testhost.exe
+C:\Users\Vericoders\.nuget\packages\microsoft.testplatform.testhost\17.7.1\build\netcoreapp3.1\x64\testhost.dll
+C:\Users\Vericoders\.nuget\packages\xunit.runner.visualstudio\2.4.5\build\netcoreapp3.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\Vericoders\.nuget\packages\xunit.runner.visualstudio\2.4.5\build\netcoreapp3.1\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\Vericoders\.nuget\packages\xunit.runner.visualstudio\2.4.5\build\netcoreapp3.1\xunit.runner.utility.netcoreapp10.dll

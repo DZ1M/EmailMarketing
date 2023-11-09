@@ -27,6 +27,7 @@ namespace EmailMarketing.ApplicationTests.Context
             CampanhaContatos = new CampanhaContatoRepository(context);
             Modelos = new ModeloRepository(context);
             Pastas = new PastaRepository(context);
+            CampanhaContatosAcoes = new CampanhaContatoAcaoRepository(context);
         }
 
         public IEmpresaRepository Empresas { get; }
@@ -40,6 +41,7 @@ namespace EmailMarketing.ApplicationTests.Context
         public IContatoRepository Contatos { get; }
 
         public ICampanhaContatoRepository CampanhaContatos { get; }
+        public ICampanhaContatoAcaoRepository CampanhaContatosAcoes { get; }
 
         public IModeloRepository Modelos { get; }
 

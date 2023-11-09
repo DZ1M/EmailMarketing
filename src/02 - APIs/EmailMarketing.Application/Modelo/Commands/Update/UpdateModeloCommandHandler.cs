@@ -16,11 +16,11 @@ namespace EmailMarketing.Application.Modelo.Commands.Update
 
         public async Task<ModeloDto> Handle(UpdateModeloCommand request, CancellationToken cancellationToken)
         {
-            var obj = await _repository.Modelos.Query().FirstOrDefaultAsync(where => where.Id == request.Id && where.IdEmpresa == request.IdEmpresa);
+            var modeloToUpdate = await _repository.Modelos.Query().FirstOrDefaultAsync(where => where.Id == request.Id && where.IdEmpresa == request.IdEmpresa, cancellationToken);
             
-            if(obj is null)
+            if(modeloToUpdate is null)
             {
-                ValidationException.ThrowException("Modelo", "Não encontrada!");
+              throw ValidationException.GetException("Modelo", "Não encontrada!");
             }
 
             if (request.Nome is not null)
@@ -29,15 +29,15 @@ namespace EmailMarketing.Application.Modelo.Commands.Update
                     .AnyAsync(where =>
                                 where.Id != request.Id &&
                                 where.IdEmpresa == request.IdEmpresa &&
-                                EF.Functions.Unaccent(where.Nome.ToLower()) == EF.Functions.Unaccent($"{request.Nome.ToLower()}")))
+                                EF.Functions.Unaccent(where.Nome.ToLower()) == EF.Functions.Unaccent($"{request.Nome.ToLower()}"),cancellationToken))
                 {
                     ValidationException.ThrowException("Modelo", "Já existe uma pasta com este mesmo nome");
                 }
             }
 
-            obj.Update(request.Nome, request.Texto, request.Tipo, request.IdUsuario);
+            modeloToUpdate.Update(request.Nome, request.Texto, request.Tipo, request.IdUsuario);
 
-            _repository.Modelos.Update(obj);
+            _repository.Modelos.Update(modeloToUpdate);
 
             var complete = await _repository.CommitAsync();
 
@@ -46,7 +46,7 @@ namespace EmailMarketing.Application.Modelo.Commands.Update
                 ValidationException.ThrowException("Modelo", "Houve um erro ao persistir os dados.");
             }
 
-            return ModeloDto.New(obj);
+            return ModeloDto.New(modeloToUpdate);
         }
     }
 }

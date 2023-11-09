@@ -1,0 +1,11 @@
+﻿C:\Git\EmailMarketing\tests\EmailMarketing.ApplicationTests\Context\TestDbContext.cs
+C:\Git\EmailMarketing\tests\EmailMarketing.ApplicationTests\Context\TestDbContextConfiguration.cs
+C:\Git\EmailMarketing\tests\EmailMarketing.ApplicationTests\Pasta\Commands\CreatePastaCommandHandlerTests.cs
+C:\Git\EmailMarketing\tests\EmailMarketing.ApplicationTests\Usings.cs
+C:\Users\Vericoders\.nuget\packages\microsoft.net.test.sdk\17.3.2\build\netcoreapp2.1\Microsoft.NET.Test.Sdk.Program.cs
+C:\Users\Vericoders\.nuget\packages\microsoft.testplatform.testhost\17.3.2\build\netcoreapp2.1\x64\testhost.exe
+C:\Users\Vericoders\.nuget\packages\microsoft.testplatform.testhost\17.3.2\build\netcoreapp2.1\x64\testhost.dll
+C:\Git\EmailMarketing\tests\EmailMarketing.ApplicationTests\appsettings.json
+C:\Users\Vericoders\.nuget\packages\xunit.runner.visualstudio\2.4.5\build\netcoreapp3.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\Vericoders\.nuget\packages\xunit.runner.visualstudio\2.4.5\build\netcoreapp3.1\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\Vericoders\.nuget\packages\xunit.runner.visualstudio\2.4.5\build\netcoreapp3.1\xunit.runner.utility.netcoreapp10.dll

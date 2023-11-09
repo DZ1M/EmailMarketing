@@ -1,0 +1,3 @@
+﻿C:\Git\EmailMarketing\src\docker-compose.override.yml
+C:\Git\EmailMarketing\src\docker-compose.yml
+C:\Git\EmailMarketing\src\.dockerignore
