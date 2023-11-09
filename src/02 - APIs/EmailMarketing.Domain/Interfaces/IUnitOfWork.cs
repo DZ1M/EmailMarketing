@@ -8,6 +8,7 @@
         ICampanhaRepository Campanhas { get; }
         IContatoRepository Contatos { get; }
         ICampanhaContatoRepository CampanhaContatos { get; }
+        ICampanhaContatoAcaoRepository CampanhaContatosAcoes { get; }
         IModeloRepository Modelos { get; }
         IPastaRepository Pastas { get; }
         Task<bool> CommitAsync();

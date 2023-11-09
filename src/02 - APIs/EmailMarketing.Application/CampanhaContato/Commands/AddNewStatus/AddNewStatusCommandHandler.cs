@@ -1,4 +1,5 @@
 ﻿using EmailMarketing.Architecture.WebApi.Core.Logs.Contracts;
+using EmailMarketing.Domain.Entities;
 using EmailMarketing.Domain.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace EmailMarketing.Application.CampanhaContato.Commands.AddNewStatus
         {
             var objToInsert = await _repository.CampanhaContatos
                 .Query()
+                .AsNoTrackingWithIdentityResolution()
                 .Include(acao => acao.Acoes)
                 .FirstOrDefaultAsync(where => where.Codigo == request.Code);
 
@@ -34,7 +36,8 @@ namespace EmailMarketing.Application.CampanhaContato.Commands.AddNewStatus
                 return Unit.Value;
             }
 
-            objToInsert.AddAcao(request.Acao);
+            var acao = new CampanhaContatoAcao(objToInsert.Id, request.Acao);
+            _repository.CampanhaContatosAcoes.Create(acao);
 
             await _repository.CommitAsync();
 

@@ -39,7 +39,7 @@ namespace EmailMarketing.Infra.Mappings
                 .HasColumnName("criado_em");
 
             builder.HasMany(x => x.Acoes)
-                .WithOne()
+                .WithOne(v => v.CampanhaContato)
                 .HasForeignKey(c => c.IdCampanhaContato);
 
             builder.HasOne(x => x.Campanha)

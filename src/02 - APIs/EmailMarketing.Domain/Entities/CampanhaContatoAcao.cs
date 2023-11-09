@@ -14,5 +14,6 @@ namespace EmailMarketing.Domain.Entities
         }
         public AcaoMensagemEnum Acao { get; private set; }
         public Guid IdCampanhaContato { get; private set; }
+        public CampanhaContato CampanhaContato { get; set; }
     }
 }

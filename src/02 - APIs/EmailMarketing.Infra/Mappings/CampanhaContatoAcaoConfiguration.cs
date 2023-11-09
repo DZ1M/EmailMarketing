@@ -36,6 +36,10 @@ namespace EmailMarketing.Infra.Mappings
                 .HasDefaultValueSql("NOW()")
                 .HasColumnName("criado_em");
 
+            builder.HasOne(c => c.CampanhaContato)
+                .WithMany(v => v.Acoes)
+                .HasForeignKey(c => c.IdCampanhaContato);
+
             builder.ToTable("campanhas_contatos_acoes", "marketing");
         }
     }
