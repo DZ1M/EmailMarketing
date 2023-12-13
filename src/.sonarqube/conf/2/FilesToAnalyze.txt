@@ -1,0 +1,17 @@
+﻿C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Domain\Entity.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Domain\ListaPaginada.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Enums\ActionEnum.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Exceptions\ApiExceptionFilterAttribute.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Exceptions\DatabaseNotFoundException.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Exceptions\DomainException.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Exceptions\ValidationException.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Messages\Command.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Messages\Event.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Messages\IntegrationEvent.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Messages\Integration\BuildMessageIntegrationEvent.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Messages\Integration\SendMessageIntegrationEvent.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Messages\Message.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Messages\ResponseMessage.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Utils\BaseFixture.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Utils\CoreDependencyInjection.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Core\Utils\ExceptionExtensions.cs

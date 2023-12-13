@@ -1,0 +1,4 @@
+﻿C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Helpers\EmailHelper.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Helpers\EncryptHelper.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Helpers\JsonHelper.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.Helpers\QueryHelper.cs

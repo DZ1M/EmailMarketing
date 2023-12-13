@@ -2,37 +2,40 @@
 using Serilog;
 using System.Net;
 
-public class ErrorHandlingMiddleware
+namespace EmailMarketing.Architecture.WebApi.Core.Registros
 {
-    private readonly RequestDelegate next;
-
-    public ErrorHandlingMiddleware(RequestDelegate next)
+    public class ErrorHandlingMiddleware
     {
-        this.next = next;
-    }
+        private readonly RequestDelegate next;
 
-    public async Task Invoke(HttpContext context)
-    {
-        try
+        public ErrorHandlingMiddleware(RequestDelegate next)
         {
-            await next(context);
+            this.next = next;
         }
-        catch (Exception ex)
+
+        public async Task Invoke(HttpContext context)
         {
-            await HandleExceptionAsync(context, ex);
+            try
+            {
+                await next(context);
+            }
+            catch (Exception ex)
+            {
+                await HandleExceptionAsync(context, ex);
+            }
         }
-    }
 
-    private static Task HandleExceptionAsync(HttpContext context, Exception exception)
-    {
-        Log.Error(exception, "Error");
+        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
+        {
+            Log.Error(exception, "Error");
 
-        var code = HttpStatusCode.InternalServerError;
+            var code = HttpStatusCode.InternalServerError;
 
-        var result = System.Text.Json.JsonSerializer.Serialize(new { error = exception?.Message });
+            var result = System.Text.Json.JsonSerializer.Serialize(new { error = exception?.Message });
 
-        context.Response.ContentType = "application/json";
-        context.Response.StatusCode = (int)code;
-        return context.Response.WriteAsync(result);
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = (int)code;
+            return context.Response.WriteAsync(result);
+        }
     }
 }

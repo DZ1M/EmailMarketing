@@ -1,0 +1,3 @@
+﻿C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.MessageBus\DependencyInjection.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.MessageBus\IMessageBus.cs
+C:\Git\EmailMarketing\src\01 - Architecture\EmailMarketing.Architecture.MessageBus\MessageBus.cs

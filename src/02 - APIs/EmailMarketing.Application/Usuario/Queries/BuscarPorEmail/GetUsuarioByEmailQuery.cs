@@ -31,17 +31,16 @@ namespace EmailMarketing.Application.Usuario.Queries.BuscarPorEmail
                 .Include(x => x.Permissoes)
                     .ThenInclude(c => c.Permissao)
                 .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Email == request.Email
-                    );
+                .FirstOrDefaultAsync(x => x.Email == request.Email,cancellationToken);
 
             if (usuario is null)
             {
-                ValidationException.ThrowException("Login", "O E-mail não existe.");
+               throw ValidationException.GetException("Login", "O E-mail não existe.");
             }
 
             if (!usuario.Ativo)
             {
-                ValidationException.ThrowException("Login", "Usuário desativado!.");
+                throw ValidationException.GetException("Login", "Usuário desativado!.");
             }
 
             var usuarioToReturn = UsuarioDto.New(usuario);

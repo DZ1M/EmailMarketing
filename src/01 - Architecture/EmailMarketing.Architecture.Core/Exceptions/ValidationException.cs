@@ -24,5 +24,11 @@ namespace EmailMarketing.Architecture.Core.Exceptions
             var failures = new List<ValidationFailure> { new ValidationFailure(propertyName, message) };
             throw new ValidationException(failures);
         }
+
+        public static ValidationException GetException(string propertyName, string message)
+        {
+            var failures = new List<ValidationFailure> { new ValidationFailure(propertyName, message) };
+            return new ValidationException(failures);
+        }
     }
 }

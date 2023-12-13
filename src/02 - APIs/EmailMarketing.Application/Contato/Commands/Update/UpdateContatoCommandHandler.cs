@@ -16,25 +16,25 @@ namespace EmailMarketing.Application.Contato.Commands.Update
 
         public async Task<ContatoDto> Handle(UpdateContatoCommand request, CancellationToken cancellationToken)
         {
-            var obj = await _repository.Contatos.Query().FirstOrDefaultAsync(where => where.Id == request.Id && where.IdEmpresa == request.IdEmpresa);
-            
-            if(obj is null)
+            var contatoToUpdate = await _repository.Contatos.Query().FirstOrDefaultAsync(where => where.Id == request.Id && where.IdEmpresa == request.IdEmpresa);
+
+            if (contatoToUpdate is null)
             {
-                ValidationException.ThrowException("Contato", "Não encontrado!");
+                throw ValidationException.GetException("Contato", "Não encontrado!");
             }
 
-            obj.Update(request.Nome, request.Email, request.Telefone, request.IdUsuario);
+            contatoToUpdate.Update(request.Nome, request.Email, request.Telefone, request.IdUsuario);
 
-            _repository.Contatos.Update(obj);
+            _repository.Contatos.Update(contatoToUpdate);
 
             var complete = await _repository.CommitAsync();
 
             if (complete is false)
             {
-                ValidationException.ThrowException("Contato", "Houve um erro ao persistir os dados.");
+                throw ValidationException.GetException("Contato", "Houve um erro ao persistir os dados.");
             }
 
-            return ContatoDto.New(obj);
+            return ContatoDto.New(contatoToUpdate);
         }
     }
 }
