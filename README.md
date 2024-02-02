@@ -10,9 +10,8 @@ Previsão de Funcionalidades:
 - Demo usando OVH Webmail, AWS SES ou GMAIL
 - Criação de Formularios
 - Criação de Grupos de Email por Formulário
-
-### Esboço inicial do Banco (Ainda vai melhorar)
-![Email Marketing](https://github.com/DZ1M/EmailMarketing/assets/61568662/d5544a82-92ec-4eb5-bf2f-5d8011ff8b44)
+- 
+###Modelo ER
 
 ### Arquitetura
 
