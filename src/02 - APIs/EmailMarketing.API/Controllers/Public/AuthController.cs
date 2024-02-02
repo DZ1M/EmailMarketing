@@ -3,6 +3,7 @@ using EmailMarketing.Application.Usuario.Queries.Authenticar;
 using EmailMarketing.Application.Usuario.Queries.GerarJwt;
 using EmailMarketing.Architecture.WebApi.Core.Auth;
 using EmailMarketing.Architecture.WebApi.Core.Controllers;
+using EmailMarketing.Architecture.WebApi.Core.Logs.Contracts;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,9 +13,11 @@ namespace EmailMarketing.API.Controllers.Public
     public class AuthController : BaseMainController
     {
         private readonly ISender _mediator;
-        public AuthController(ISender mediator)
+        private readonly IAppLogger _appLogger;
+        public AuthController(ISender mediator, IAppLogger appLogger)
         {
             _mediator = mediator;
+            _appLogger = appLogger;
         }
 
         [HttpPost("nova-conta")]

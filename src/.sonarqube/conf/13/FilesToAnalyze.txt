@@ -1,0 +1,6 @@
+﻿C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.WorkerService\Program.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.WorkerService\Worker.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.WorkerService\appsettings.Development.json
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.WorkerService\appsettings.json
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.WorkerService\Dockerfile
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.WorkerService\Properties\launchSettings.json

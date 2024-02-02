@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dotnet-EmailMarketing.SenderMail.WorkerService-e0a542a9-570f-4d90-bcf0-23a18fd8ca97</UserSecretsId>
-    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
@@ -18,6 +18,7 @@
 	  <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.Core\EmailMarketing.Architecture.Core.csproj" />
 	  <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.Helpers\EmailMarketing.Architecture.Helpers.csproj" />
 	  <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.MessageBus\EmailMarketing.Architecture.MessageBus.csproj" />
+	  <ProjectReference Include="..\..\01 - Architecture\EmailMarketing.Architecture.WebApi.Core\EmailMarketing.Architecture.WebApi.Core.csproj" />
 	  <ProjectReference Include="..\EmailMarketing.SenderMail.Application\EmailMarketing.SenderMail.Application.csproj" />
 	  <ProjectReference Include="..\EmailMarketing.SenderMail.Infra\EmailMarketing.SenderMail.Infra.csproj" />
   </ItemGroup>

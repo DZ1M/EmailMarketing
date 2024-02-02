@@ -2,9 +2,8 @@
 using EmailMarketing.Application;
 using EmailMarketing.Architecture.WebApi.Core.Auth;
 using EmailMarketing.Infra;
-using Serilog;
 using EmailMarketing.Architecture.MessageBus;
-using Serilog.Sinks.PeriodicBatching;
+using EmailMarketing.Architecture.WebApi.Core.IoC;
 
 namespace EmailMarketing.API
 {
@@ -27,6 +26,7 @@ namespace EmailMarketing.API
             {
                 builder.AddUserSecrets<Startup>();
             }
+
 
             Configuration = builder.Build();
         }
@@ -53,7 +53,6 @@ namespace EmailMarketing.API
             DbMigrationHelpers.EnsureSeedData(app).Wait();
 
             app.UseSwaggerConfiguration(environment);
-
             app.UseApiConfiguration();
         }
     }
@@ -73,20 +72,13 @@ namespace EmailMarketing.API
 
             if (startup == null) throw new ArgumentException("Class Startup.cs invalid!");
 
-            WebAppBuilder.Logging.AddSerilog(new LoggerConfiguration()
-                .Enrich.FromLogContext()
-                //.WriteTo.Console(WebAppBuilder.Configuration.GetConnectionString(""), sinkOptions: new NpgsqlSinkOptions { 
-                // AutoCreateSqlTable = true,
-                // TableName = "logs",
-                //}, columnOptions: new ColumnOptions{ AdditionalColumns = new List<SqlColumn>{
-                // new SqlColumn { DataType = SqlDbType.VarChar, ColumnName = "Payload", DataLenght = -1, AllowNull = true
-                //}})
-                .ReadFrom.Configuration(WebAppBuilder.Configuration)
-                .CreateLogger());
+            WebAppBuilder.AddSerilog(WebAppBuilder.Configuration, "API Observability");
 
             startup.ConfigureServices(WebAppBuilder.Services);
 
             var app = WebAppBuilder.Build();
+
+            app.UseSerilog();
             startup.Configure(app, app.Environment);
             app.Run();
 

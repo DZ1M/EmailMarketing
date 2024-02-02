@@ -1,7 +1,6 @@
 using EmailMarketing.SenderMail.API.Configuration;
 using EmailMarketing.SenderMail.Infra;
 using EmailMarketing.SenderMail.Application;
-using Serilog;
 using EmailMarketing.Architecture.WebApi.Core.Configuration;
 using EmailMarketing.Architecture.WebApi.Core.Filter;
 using Microsoft.OpenApi.Models;
@@ -9,6 +8,7 @@ using System.Reflection;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using EmailMarketing.Architecture.Core.Exceptions;
 using FluentValidation.AspNetCore;
+using EmailMarketing.Architecture.WebApi.Core.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,9 +43,7 @@ builder.Services.AddFluentValidationRulesToSwagger();
 builder.Services.InjectApplication();
 builder.Services.InjectInfra(builder.Configuration);
 
-builder.Logging.AddSerilog(new LoggerConfiguration()
-                .ReadFrom.Configuration(builder.Configuration)
-                .CreateLogger());
+builder.AddSerilog(builder.Configuration, "API Observability");
 
 var app = builder.Build();
 
@@ -59,9 +57,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
+app.UseSerilog();
 app.MapControllers();
 
 app.Run();

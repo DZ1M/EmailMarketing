@@ -1,0 +1,7 @@
+﻿C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Application\ControleEmail\Commands\Create\CriarControleEmailCommand.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Application\ControleEmail\Commands\Create\CriarControleEmailCommandHandler.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Application\ControleEmail\Commands\Create\CriarControleEmailCommandValidator.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Application\DependencyInjection.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Application\EnviarEmail\BaseMensagemCommand.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Application\EnviarEmail\EnviarMensagemCommand.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Application\EnviarEmail\EnviarMensagemCommandHandler.cs

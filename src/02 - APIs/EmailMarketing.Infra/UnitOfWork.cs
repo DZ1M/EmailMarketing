@@ -12,6 +12,7 @@ namespace EmailMarketing.Infra
         public ICampanhaRepository Campanhas { get; }
         public IContatoRepository Contatos { get; }
         public ICampanhaContatoRepository CampanhaContatos { get; }
+        public ICampanhaContatoAcaoRepository CampanhaContatosAcoes { get; }
         public IModeloRepository Modelos { get; }
         public IPastaRepository Pastas { get; }
         public UnitOfWork(EmailMarketingContext context,
@@ -22,7 +23,8 @@ namespace EmailMarketing.Infra
             IContatoRepository contatos,
             ICampanhaContatoRepository campanhasContatos,
             IModeloRepository modelos,
-            IPastaRepository pastas)
+            IPastaRepository pastas,
+            ICampanhaContatoAcaoRepository campanhaContatosAcoes)
         {
             _context = context;
             Empresas = empresa;
@@ -33,6 +35,7 @@ namespace EmailMarketing.Infra
             CampanhaContatos = campanhasContatos;
             Modelos = modelos;
             Pastas = pastas;
+            CampanhaContatosAcoes = campanhaContatosAcoes;
         }
 
         public async Task<bool> CommitAsync()

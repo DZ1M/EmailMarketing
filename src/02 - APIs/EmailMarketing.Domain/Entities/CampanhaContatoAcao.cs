@@ -10,8 +10,10 @@ namespace EmailMarketing.Domain.Entities
         {
             IdCampanhaContato = idCampanhaContato;
             Acao = acao;
+            CriadoEm = DateTime.Now;
         }
-        public AcaoMensagemEnum Acao { get; set; }
-        public Guid IdCampanhaContato { get; set; }
+        public AcaoMensagemEnum Acao { get; private set; }
+        public Guid IdCampanhaContato { get; private set; }
+        public CampanhaContato CampanhaContato { get; set; }
     }
 }

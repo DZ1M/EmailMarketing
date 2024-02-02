@@ -4,12 +4,27 @@
       "commandName": "Project",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development",
-        "ENCRYPT_EMAIL": "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x"
+        "ENCRYPT_EMAIL": "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x",
+        "ELASTIC_USERNAME": "admin",
+        "ELASTIC_PASSWORD": "123456",
+        "ELASTIC_URI": "elasticsearch:9200",
+        "ELASTIC_INDEX": "test",
+        "URL_API": "https://localhost:5432/api/mensagem/lida/"
       },
       "dotnetRunMessages": true
     },
     "Docker": {
-      "commandName": "Docker"
+      "commandName": "Docker",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "https://+:443;http://+:80",
+        "ENCRYPT_EMAIL": "2jUaIJrcXdcr7VMbgGzrm6SXiAuIXK0x",
+        "ELASTIC_USERNAME": "admin",
+        "ELASTIC_PASSWORD": "123456",
+        "ELASTIC_URI": "elasticsearch:9200",
+        "ELASTIC_INDEX": "test",
+        "URL_API": "https://localhost:5432/mensagem/lida/"
+      }
     }
   }
 }

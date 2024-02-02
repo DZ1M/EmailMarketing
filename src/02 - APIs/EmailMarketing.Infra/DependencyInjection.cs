@@ -18,6 +18,7 @@ namespace EmailMarketing.Infra
             services.AddScoped<IContatoRepository, ContatoRepository>();
             services.AddScoped<ICampanhaRepository, CampanhaRepository>();
             services.AddScoped<ICampanhaContatoRepository, CampanhaContatoRepository>();
+            services.AddScoped<ICampanhaContatoAcaoRepository, CampanhaContatoAcaoRepository>();
             services.AddScoped<IModeloRepository, ModeloRepository>();
             services.AddScoped<IPastaRepository, PastaRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();

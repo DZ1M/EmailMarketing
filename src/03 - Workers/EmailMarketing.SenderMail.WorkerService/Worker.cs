@@ -22,7 +22,24 @@ namespace EmailMarketing.SenderMail.WorkerService
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            await _bus.SubscribeAsync<SendMessageIntegrationEvent>("SendMessage", EnviarMensagem);
+            bool stop = true;
+            while (stop)
+            {
+                try
+                {
+                    await _bus.SubscribeAsync<SendMessageIntegrationEvent>("SendMessage", EnviarMensagem);
+                    stop = false;
+                }
+                catch (Exception ex)
+                {
+                    stop = true;
+                    _logger.LogError(ex, "Conexão com RabbitMQ indisponivel!");
+                }
+                finally
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                }
+            }
         }
         private async Task EnviarMensagem(SendMessageIntegrationEvent message)
         {

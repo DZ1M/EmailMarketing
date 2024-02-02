@@ -1,6 +1,7 @@
 ﻿using EmailMarketing.Architecture.Core.Exceptions;
 using EmailMarketing.Architecture.Core.Messages.Integration;
 using EmailMarketing.Architecture.MessageBus;
+using EmailMarketing.Architecture.WebApi.Core.Logs.Contracts;
 using EmailMarketing.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,9 +11,9 @@ namespace EmailMarketing.API.Services
     {
         private readonly IMessageBus _bus;
         private readonly IServiceProvider _serviceProvider;
-        private readonly ILogger<BuildMessageIntegrationHandler> _logger;
+        private readonly IAppLogger _logger;
 
-        public BuildMessageIntegrationHandler(IMessageBus bus, IServiceProvider serviceProvider, ILogger<BuildMessageIntegrationHandler> logger)
+        public BuildMessageIntegrationHandler(IMessageBus bus, IServiceProvider serviceProvider, IAppLogger logger)
         {
             _bus = bus;
             _serviceProvider = serviceProvider;
@@ -20,7 +21,24 @@ namespace EmailMarketing.API.Services
         }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            await _bus.SubscribeAsync<BuildMessageIntegrationEvent>("BuildMessage", ProcessMessages);
+            bool stop = true;
+            while (stop)
+            {
+                try
+                {
+                    await _bus.SubscribeAsync<BuildMessageIntegrationEvent>("BuildMessage", ProcessMessages);
+                    stop = false;
+                }
+                catch (Exception ex)
+                {
+                    stop = true;
+                    _logger.LogError(ex, "Conexão com RabbitMQ indisponivel!");
+                }
+                finally
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                }
+            }
         }
         private async Task ProcessMessages(BuildMessageIntegrationEvent message)
         {
@@ -57,11 +75,11 @@ namespace EmailMarketing.API.Services
 
                         await _bus.PublishAsync(command);
 
-                        _logger.LogInformation($"Mensagem enviada para o contato {contato.Contato.Email} a campanha id: {message.Id}.");
+                        _logger.LogInfo($"Mensagem enviada para o contato {contato.Contato.Email} a campanha id: {message.Id}.");
                     }
                     catch (Exception ex)
                     {
-                        _logger.LogError(ex.Message, $"Ocorreu um erro ao enviar a campanha id: {message.Id}.");
+                        _logger.LogError(ex, $"Ocorreu um erro ao enviar a campanha id: {message.Id}.");
                     }
                 }
             }

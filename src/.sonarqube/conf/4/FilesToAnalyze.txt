@@ -1,0 +1,4 @@
+﻿C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Domain\Entities\ControleEmail.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Domain\Interfaces\IControleEmailRepository.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Domain\Interfaces\IRepositoryBase.cs
+C:\Git\EmailMarketing\src\03 - Workers\EmailMarketing.SenderMail.Domain\Interfaces\IUnitOfWork.cs

@@ -7,6 +7,7 @@ using EmailMarketing.Application.DTOs;
 using EmailMarketing.Architecture.Core.Domain;
 using EmailMarketing.Architecture.WebApi.Core.Auth;
 using EmailMarketing.Architecture.WebApi.Core.Controllers;
+using EmailMarketing.Architecture.WebApi.Core.Logs.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +16,13 @@ namespace EmailMarketing.API.Controllers.Private
     [Authorize, Route("api/[controller]")]
     public class ContatoController : MainController
     {
+        private readonly IAppLogger _appLogger;
+
+        public ContatoController(IAppLogger appLogger)
+        {
+            _appLogger = appLogger;
+        }
+
         /// <summary>
         /// Cria um novo modelo
         /// </summary>
